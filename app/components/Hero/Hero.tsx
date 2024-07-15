@@ -8,8 +8,8 @@ const Hero = () => {
         <div className="text-sm font-mono text-second">Hi, my name is</div>
         <div className="big-heading">Shelton Cui</div>
 
-        <div className="big-heading text-gray-500">Welcome to my website.</div>
-        <div className="text-xl whitespace-pre-line text-gray-500">
+        <div className="big-heading text-sandGray">Welcome to my website.</div>
+        <div className="text-xl whitespace-pre-line text-sandGray">
           {`I’m a software engineer specializing in building (and occasionally
         designing) exceptional digital experiences. Currently, I’m focused on
         building accessible, human-centered products at `}

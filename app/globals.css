@@ -22,14 +22,21 @@ html {
 
 /*////*/
 body {
-    @apply text-white
-    /*background-color: #1e1e2f;*/
+    @apply text-milkWhite
 }
 
 .h2 {
     @apply text-3xl
 }
 
+.p{
+    @apply text-xl
+}
+
+
+.anchor {
+    scroll-margin-top: 25vh; /* 设置偏移量 */
+}
 
 
 

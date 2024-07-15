@@ -1,6 +1,7 @@
 import PageContainer from "@/app/components/PageContainer";
 import Image from "next/image";
 import { BsFillCaretRightFill } from "react-icons/bs";
+import CardTitle from "@/app/components/CardTitle";
 
 const AboutMe = () => {
   const skills = [
@@ -13,11 +14,12 @@ const AboutMe = () => {
   ];
 
   return (
-    <PageContainer maxWidth={900}>
-      <div id="About">
-        <h2>01. About Me</h2>
-        <div className="flex gap-4">
-          <div className="whitespace-pre-line space-y-4">
+    <div className="flex flex-col gap-2 justify-center mx-auto max-w-[900px]">
+      <div id="About" className="anchor">
+        <CardTitle title="About Me" index={1}></CardTitle>
+
+        <div className="flex gap-4 ">
+          <div className="whitespace-pre-line space-y-4 text-sandGray">
             <p>
               {`Hello! My name is Brittany and I enjoy creating things that live on
             the internet. My interest in web development started back in 2012
@@ -37,11 +39,11 @@ const AboutMe = () => {
             build a web app with the Spotify API using Node & React.`}
             </p>
             <p>{`Here are a few technologies I’ve been working with recently:`}</p>
-            <ul className="skills-grid">
+            <ul className="skills-grid text-sm">
               {skills &&
                 skills.map((skill, i) => (
                   <li key={i} className="flex items-center gap-4">
-                    <BsFillCaretRightFill />
+                    <BsFillCaretRightFill className="text-second" />
                     {skill}
                   </li>
                 ))}
@@ -50,7 +52,7 @@ const AboutMe = () => {
           <Image
             className="self-start"
             alt="my picture"
-            src="/vercel.svg"
+            src="/cat.jpg"
             width={200}
             height={200}
             objectPosition="center"
@@ -58,7 +60,7 @@ const AboutMe = () => {
           />
         </div>
       </div>
-    </PageContainer>
+    </div>
   );
 };
 

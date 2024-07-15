@@ -1,6 +1,8 @@
 "use client";
 import React, { useState, useEffect, useRef } from "react";
 import useIndicator from "@/app/utils/useIndicator";
+import CardTitle from "@/app/components/CardTitle";
+import { BsFillCaretRightFill } from "react-icons/bs";
 
 const tabs = ["Upstatement", "Apple"];
 
@@ -44,12 +46,13 @@ const Job = () => {
   }, [selectedTab]);
 
   return (
-    <div className="mx-auto max-w-[700px] h-screen relative border pt-[25%]">
-      <h2 className="pb-8">02. Where I&apos;ve Worked</h2>
+    <div className="mx-auto max-w-[700px] relative pt-[25%]" id="Experience">
+      {/*<h2 className="pb-8">02. Where I&apos;ve Worked</h2>*/}
+      <CardTitle index={2} title="Where I've Worked" />
       <div className="flex">
         <div className="relative flex flex-col gap-4">
           <div
-            className="absolute left-0 w-[2px] bg-green-500 transition-all duration-300"
+            className="absolute left-0 w-[2px] bg-second transition-all duration-300"
             style={indicatorStyle}
           />
           {tabs.map((tab, index) => (
@@ -58,7 +61,7 @@ const Job = () => {
               ref={(el) => {
                 tabRefs.current[index] = el as HTMLDivElement;
               }}
-              className={`cursor-pointer pl-4 ${selectedTab === index ? "text-green-400" : "text-gray-400"}`}
+              className={`cursor-pointer pl-4 ${selectedTab === index ? "text-second" : "text-gray-400"}`}
               onClick={() => setSelectedTab(index)}
             >
               {tab}
@@ -73,9 +76,13 @@ const Job = () => {
           <p className="text-sm text-gray-500">
             {experiences[selectedTab].duration}
           </p>
-          <ul className="mt-4 space-y-2 list-disc list-inside">
+          <ul className="mt-4 space-y-2 ">
             {experiences[selectedTab].details.map((detail, index) => (
-              <li key={index} className="text-gray-300">
+              <li key={index} className="flex gap-2">
+                <BsFillCaretRightFill
+                  size={15}
+                  className="text-second flex-shrink-0 mt-1"
+                />
                 {detail}
               </li>
             ))}

@@ -30,6 +30,8 @@ const config: Config = {
         bg: "#111428",
         primary: "#734cf9",
         second: "#da69c1",
+        milkWhite: "#ccd6f6",
+        sandGray: "#8892b0",
       },
       keyframes: {
         fadeIn: {

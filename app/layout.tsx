@@ -20,7 +20,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.className} bg-bg`}>
+      <body className={`${inter.className} bg-bg font-sans`}>
         <NavBar />
         <div className="mx-auto max-w-[1600px] px-[150px] ">{children}</div>
       </body>
