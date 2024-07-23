@@ -1,42 +1,46 @@
-import PageContainer from "@/app/components/PageContainer";
-import Image from "next/image";
-import { BsFillCaretRightFill } from "react-icons/bs";
-import CardTitle from "@/app/components/CardTitle";
+import PageContainer from '@/app/components/PageContainer';
+import Image from 'next/image';
+import { BsFillCaretRightFill } from 'react-icons/bs';
+import CardTitle from '@/app/components/CardTitle';
 
 const AboutMe = () => {
   const skills = [
-    "JavaScript (ES6+)",
-    "TypeScript",
-    "React",
-    "Eleventy",
-    "Node.js",
-    "WordPress",
+    'JavaScript (ES6+)',
+    'TypeScript',
+    'React',
+    'Next.js',
+    'Nest.js',
+    'AWS EC2',
+    'MUI',
+    'PostgreSQL',
+    'MongoDB ',
+    'Jest',
   ];
 
   return (
-    <div className="flex flex-col gap-2 justify-center mx-auto max-w-[900px]">
+    <div className="flex flex-col gap-2 justify-center mx-auto max-w-[1000px]">
       <div id="About" className="anchor">
         <CardTitle title="About Me" index={1}></CardTitle>
 
         <div className="flex gap-4 ">
           <div className="whitespace-pre-line space-y-4 text-sandGray">
             <p>
-              {`Hello! My name is Brittany and I enjoy creating things that live on
-            the internet. My interest in web development started back in 2012
-            when I decided to try editing custom Tumblr themes — turns out
-            hacking together a custom reblog button taught me a lot about HTML &
-            CSS!`}
+              {`Hello, I’m Shelton Cui, a dedicated JavaScript Engineer with over 3 years of
+               development experience and 1 year of professional work experience. I specialize
+                in React development and am skilled in using tools and technologies such as 
+                Next.js, TypeScript, Tailwind CSS, and Prisma.`}
             </p>
             <p>
-              {`Fast-forward to today, and I’ve had the privilege of working at an
-            advertising agency, a start-up, a huge corporation, and a
-            student-led design studio. My main focus these days is building
-            accessible, inclusive products and digital experiences at
-            Upstatement for a variety of clients.`}
+              {`One of my strengths is my ability to quickly learn new technologies and adapt to new 
+              environments. Whether it’s a new tool, framework, or working in a different type of 
+              project, I excel at rapidly acquiring the necessary skills and integrating them into 
+              my work. This adaptability allows me to thrive in dynamic and innovative settings 
+              where challenges are viewed as opportunities for growth.`}
             </p>
             <p>
-              {`I also recently launched a course that covers everything you need to
-            build a web app with the Spotify API using Node & React.`}
+              {`I am eager to contribute to projects that push the boundaries of technology and 
+              collaborate with teams to drive success. I look forward to applying my skills and 
+              enthusiasm to make a meaningful impact.`}
             </p>
             <p>{`Here are a few technologies I’ve been working with recently:`}</p>
             <ul className="skills-grid text-sm">

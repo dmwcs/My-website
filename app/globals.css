@@ -3,48 +3,35 @@
 @tailwind utilities;
 
 html {
-    scroll-behavior: smooth;
+  scroll-behavior: smooth;
 }
 
 .big-heading {
-    margin: 0;
-    font-size: clamp(40px, 8vw, 80px);
-    font-weight: 600;
-    line-height: 0.8;
+  margin: 0;
+  font-size: clamp(40px, 8vw, 80px);
+  font-weight: 600;
+  line-height: 0.8;
 }
 
 .skills-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
 }
-
 
 /*////*/
 body {
-    @apply text-milkWhite
+  @apply text-milkWhite;
 }
 
 .h2 {
-    @apply text-3xl
+  @apply text-3xl;
 }
 
-.p{
-    @apply text-xl
+.p {
+  @apply text-xl;
 }
-
 
 .anchor {
-    scroll-margin-top: 25vh; /* 设置偏移量 */
+  scroll-margin-top: 25vh; /* 设置偏移量 */
 }
-
-
-
-
-
-
-
-
-
-
-

@@ -4,7 +4,7 @@ const CardTitle = ({ index, title }: { index: number; title: string }) => {
       <h2 className="font-semibold">
         <span className="font-mono text-primary font-normal text-lg">
           {0}
-          {index}.{" "}
+          {index}.{' '}
         </span>
         {title}
       </h2>

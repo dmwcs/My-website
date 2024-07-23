@@ -1,8 +1,8 @@
-import Image from "next/image";
+import Image from 'next/image';
 
 interface Props {
   imgUrl: string;
-  patter: "lr" | "rl";
+  patter: 'lr' | 'rl';
   content: {
     title: string;
   };
@@ -33,17 +33,17 @@ const ProjectTemplate = (props: Props) => {
               A minimal, dark blue theme for VS Code, Sublime Text, Atom, iTerm,
               and more. Available on
               <a href="#" className="text-teal-500 underline">
-                {" "}
+                {' '}
                 Link 1
               </a>
               ,
               <a href="#" className="text-teal-500 underline">
-                {" "}
+                {' '}
                 Link 2
               </a>
               ,
               <a href="#" className="text-teal-500 underline">
-                {" "}
+                {' '}
                 Link 3
               </a>
               , and

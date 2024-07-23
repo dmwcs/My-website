@@ -1,10 +1,10 @@
-"use client";
+'use client';
 
-import PageContainer from "@/app/components/PageContainer";
-import Image from "next/image";
-import { FaGithub } from "react-icons/fa";
-import { GoProjectSymlink } from "react-icons/go";
-import Link from "next/link";
+import PageContainer from '@/app/components/PageContainer';
+import Image from 'next/image';
+import { FaGithub } from 'react-icons/fa';
+import { GoProjectSymlink } from 'react-icons/go';
+import Link from 'next/link';
 
 const Project = () => {
   return (

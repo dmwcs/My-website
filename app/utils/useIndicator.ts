@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from 'react';
 
 const useIndicator = (selectedTab: number) => {
   const tabRefs = useRef<HTMLDivElement[]>([]);
@@ -17,8 +17,8 @@ const useIndicator = (selectedTab: number) => {
     };
 
     updateIndicator();
-    window.addEventListener("resize", updateIndicator);
-    return () => window.removeEventListener("resize", updateIndicator);
+    window.addEventListener('resize', updateIndicator);
+    return () => window.removeEventListener('resize', updateIndicator);
   }, [selectedTab]);
 
   return { indicatorStyle, tabRefs };
