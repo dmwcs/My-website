@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 
-const useIndicator = (selectedTab) => {
-  const tabRefs = useRef([]);
+const useIndicator = (selectedTab: number) => {
+  const tabRefs = useRef<HTMLDivElement[]>([]);
   const [indicatorStyle, setIndicatorStyle] = useState({});
 
   useEffect(() => {
