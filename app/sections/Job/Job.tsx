@@ -46,7 +46,7 @@ const Job = () => {
   }, [selectedTab]);
 
   return (
-    <div className="mx-auto max-w-[700px] relative pt-[25%]" id="Experience">
+    <div className="mx-auto max-w-[900px] py-32 relative" id="Experience">
       <CardTitle index={2} title="Where I've Worked" />
       <div className="flex">
         <div className="relative flex flex-col gap-4">
@@ -60,7 +60,7 @@ const Job = () => {
               ref={(el) => {
                 tabRefs.current[index] = el as HTMLDivElement;
               }}
-              className={`cursor-pointer pl-4 ${selectedTab === index ? 'text-second' : 'text-gray-400'}`}
+              className={`transition duration-300 hover:bg-second/30 cursor-pointer font-mono text-sm p-4 text-center ${selectedTab === index ? 'text-second' : 'text-gray-400'}`}
               onClick={() => setSelectedTab(index)}
             >
               {tab}

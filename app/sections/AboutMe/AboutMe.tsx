@@ -18,11 +18,11 @@ const AboutMe = () => {
   ];
 
   return (
-    <div className="flex flex-col gap-2 justify-center mx-auto max-w-[1000px]">
+    <div className="flex flex-col gap-2 justify-center mx-auto max-w-[1100px] py-32">
       <div id="About" className="anchor">
         <CardTitle title="About Me" index={1}></CardTitle>
 
-        <div className="flex gap-4 ">
+        <div className="flex gap-28 ">
           <div className="whitespace-pre-line space-y-4 text-sandGray">
             <p>
               {`Hello, I’m Shelton Cui, a dedicated JavaScript Engineer with over 3 years of
