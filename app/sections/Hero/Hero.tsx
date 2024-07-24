@@ -1,4 +1,4 @@
-import PageContainer from '@/app/components/PageContainer';
+import PageContainer from '@/app/components/PageContainer/PageContainer';
 import BigButton from '@/app/components/BigButton';
 
 const Hero = () => {

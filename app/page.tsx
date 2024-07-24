@@ -1,8 +1,8 @@
 'use client';
-import Hero from '@/app/components/Hero';
-import AboutMe from '@/app/components/AboutMe';
-import Job from '@/app/components/Job';
-import Project from '@/app/components/Project';
+import Hero from '@/app/sections/Hero';
+import AboutMe from '@/app/sections/AboutMe';
+import Job from '@/app/sections/Job';
+import Project from '@/app/sections/Project';
 import { useEffect, useState } from 'react';
 
 export default function Home() {

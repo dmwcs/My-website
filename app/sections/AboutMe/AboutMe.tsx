@@ -1,4 +1,4 @@
-import PageContainer from '@/app/components/PageContainer';
+import PageContainer from '@/app/components/PageContainer/PageContainer';
 import Image from 'next/image';
 import { BsFillCaretRightFill } from 'react-icons/bs';
 import CardTitle from '@/app/components/CardTitle';

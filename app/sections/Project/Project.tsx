@@ -1,6 +1,6 @@
 'use client';
 
-import PageContainer from '@/app/components/PageContainer';
+import PageContainer from '@/app/components/PageContainer/PageContainer';
 import Image from 'next/image';
 import { FaGithub } from 'react-icons/fa';
 import { GoProjectSymlink } from 'react-icons/go';

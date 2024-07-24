@@ -4,29 +4,29 @@ import useIndicator from '@/app/utils/useIndicator';
 import CardTitle from '@/app/components/CardTitle';
 import { BsFillCaretRightFill } from 'react-icons/bs';
 
-const tabs = ['Upstatement', 'Apple'];
+const tabs = ['TripTribe', 'Melfish'];
 
 const experiences = [
   {
-    company: 'Upstatement',
-    position: 'Lead Engineer',
-    duration: 'May 2018 - Present',
+    company: 'TripTribe',
+    position: 'Full-stack developer',
+    duration: 'Feb 2024 – Present',
     details: [
-      'Deliver high-quality, robust production code for a diverse array of projects for clients including Harvard Business School, Everytown for Gun Safety, Pratt Institute, Koala Health, Vanderbilt University, The 19th News, and more',
-      'Work alongside creative directors to lead the research, development, and architecture of technical solutions to fulfill business requirements',
-      'Collaborate with designers, project managers, and other engineers to transform creative concepts into production realities for clients and stakeholders',
-      'Provide leadership within engineering department through close collaboration, knowledge shares, and mentorship',
+      'Designed and implemented frontend pages using Material-UI for interface building and Context API for global state management.',
+      'Developed backend services using Nest.js Pages Router to build RESTful APIs, implementing user authentication, course management, and other features.',
+      'Wrote unit tests and integration tests, achieving high test coverage using Jest and Testing Library to ensure code quality and stability.',
+      'Collaborated with the team, participated in requirements analysis, feature design, and iterative development, delivering high-quality products on time',
     ],
   },
   {
-    company: 'Apple',
-    position: 'UI Engineer Co-op',
-    duration: 'July - December 2017',
+    company: 'Melfish',
+    position: 'Front-end developer',
+    duration: 'Oct 2023 – Feb 2024',
     details: [
-      'Developed and styled interactive web applications for Apple Music using Ember and SCSS',
-      'Built and shipped the Apple Music Extension for Facebook Messenger leveraging third-party and internal API integrations',
-      "Architected and implemented the user interface of Apple Music's embeddable web player widget for in-browser user authorization and full song playback",
-      'Contributed extensively to the creation of MusicKit JS, a public-facing JavaScript SDK for embedding Apple Music players into web applications',
+      'Developed a Meetup-like website from scratch, enabling users to create and join interest groups and activities. All page designs were coordinated with a professional Figma team without using component libraries.',
+      'Collaborated with the Figma Design team to transform wireframes, prototypes, and high-fidelity mock-ups into functional web pages and components. Used TypeScript to enhance collaboration, maintainability, and bug detection efficiency.',
+      'Utilized Tailwind CSS for responsive design, unifying the theme style with the UI team. Optimized complex form actions using React Hook Form, simplifying form logic and state management.',
+      'Implemented RESTful APIs using Next.js’s API routes feature, simplifying file system-based routing. Configured the project from scratch, including Prettier and ESLint rules, to ensure consistent code formatting and linting.',
     ],
   },
 ];
@@ -47,7 +47,6 @@ const Job = () => {
 
   return (
     <div className="mx-auto max-w-[700px] relative pt-[25%]" id="Experience">
-      {/*<h2 className="pb-8">02. Where I&apos;ve Worked</h2>*/}
       <CardTitle index={2} title="Where I've Worked" />
       <div className="flex">
         <div className="relative flex flex-col gap-4">
