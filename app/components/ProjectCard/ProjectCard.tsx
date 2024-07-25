@@ -22,7 +22,7 @@ const ProjectCard = ({ project, direct = 'left' }: Props) => {
   const { img, title, description, techs, github, website } = project;
   return (
     <div className="relative">
-      <div className={`relative w-7/12 ${direct === 'left' ? '' : 'ml-auto'}`}>
+      <div className={`relative w-8/12 ${direct === 'left' ? '' : 'ml-auto'}`}>
         <Image
           src={img}
           alt="Project Screenshot"

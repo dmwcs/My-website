@@ -42,7 +42,11 @@ const NavBar = () => {
       <div className="flex gap-x-5 justify-between font-mono text-sm items-center">
         {taps.map((tap, index) => {
           return (
-            <Link href={`#${tap}`} key={index}>
+            <Link
+              href={`#${tap}`}
+              key={index}
+              className="hover:text-second transition"
+            >
               <span className="text-second">0{index + 1}. </span>
               {tap}
             </Link>

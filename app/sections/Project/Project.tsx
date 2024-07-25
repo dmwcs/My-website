@@ -5,7 +5,7 @@ import ProjectCard from '@/app/components/ProjectCard';
 
 const projects = [
   {
-    img: '/img.png',
+    img: '/img.jpg',
     title: 'Blog-platform',
     description:
       'A blog platform where users can create and manage posts, share information, and engage with each other.',
@@ -23,7 +23,7 @@ const projects = [
     website: 'https://github.com/dmwcs/My-website',
   },
   {
-    img: '/img.png',
+    img: '/img.jpg',
     title: 'Project Gamma',
     description:
       'This is a description for Project Gamma. It is a mobile application for social networking.',
