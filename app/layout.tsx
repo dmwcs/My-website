@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import NavBar from '@/app/components/NavBar';
 import './globals.css';
+import SideBar from '@/app/components/SideBar';
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -22,6 +23,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${inter.className} bg-bg font-sans`}>
         <NavBar />
+        <SideBar />
         <div className="mx-auto max-w-[1600px] px-[150px] ">{children}</div>
       </body>
     </html>

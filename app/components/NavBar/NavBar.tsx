@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 
-const taps = ['Hero', 'About', 'Job', 'Project', 'Contact'];
+const taps = ['About', 'Job', 'Project', 'Contact'];
 
 const NavBar = () => {
   const [showNavbar, setShowNavbar] = useState(true);

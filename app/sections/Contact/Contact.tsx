@@ -16,8 +16,8 @@ const Contact = () => {
       className="flex flex-col gap-6 items-center mx-auto max-w-[600px] py-32 justify-center mb-32"
       id="Contact"
     >
-      <div className="font-mono text-second">04. Say Hello!</div>
-      <div className="text-6xl">Connect with Me</div>
+      <div className="font-mono text-second">04. The next step</div>
+      <div className="text-6xl">Contact with Me</div>
       <p className="text-xl text-center">
         I'm currently open to new opportunities. Whether you have a question or
         just want to say hi, my inbox is always open. I'll do my best to get
