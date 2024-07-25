@@ -21,7 +21,7 @@ interface Props {
 const ProjectCard = ({ project, direct = 'left' }: Props) => {
   const { img, title, description, techs, github, website } = project;
   return (
-    <div className="relative border">
+    <div className="relative">
       <div className={`relative w-7/12 ${direct === 'left' ? '' : 'ml-auto'}`}>
         <Image
           src={img}
@@ -30,7 +30,7 @@ const ProjectCard = ({ project, direct = 'left' }: Props) => {
           width={700}
           height={500}
         />
-        <div className="bg-primary opacity-50 hover:opacity-0 absolute inset-0 transition-opacity duration-300"></div>
+        <div className="bg-bg opacity-50 hover:opacity-0 absolute inset-0 transition-opacity duration-300"></div>
       </div>
 
       <ProjectContent

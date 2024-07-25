@@ -1,9 +1,6 @@
-import Image from 'next/image';
 import Link from 'next/link';
 import { FaGithub } from 'react-icons/fa';
 import { GoProjectSymlink } from 'react-icons/go';
-import * as url from 'url';
-import { Url } from 'url';
 
 interface Props {
   title: string;
@@ -26,10 +23,10 @@ const ProjectContent = ({
     <div
       className={`top-1/2 -translate-y-1/2 absolute gap-4 z-20 w-6/12 flex flex-col ${direct === 'left' ? 'items-end right-0' : 'items-start left-0'} rounded-lg `}
     >
-      <h3 className=" shadow-lg text-2xl md:text-3xl font-bold text-white ">
-        {title}
-      </h3>
-      <p className="p-4 mt-4 bg-second pl-4 rounded text-lg">{description}</p>
+      <h3 className="shadow-lg text-2xl font-bold text-white">{title}</h3>
+      <p className="p-4 mt-4 bg-test/90 pl-4 rounded text-lg shadow-2xl">
+        {description}
+      </p>
       <div className="flex gap-4">
         {techs.map((tech, index) => (
           <p className="text-sm font-mono" key={index}>
@@ -37,7 +34,6 @@ const ProjectContent = ({
           </p>
         ))}
       </div>
-      {/*<p className="text-sm font-mono">{techs}</p>*/}
       <div className="flex flex-wrap gap-4 mt-4">
         <Link href={github!}>
           <FaGithub size={25} />

@@ -3,7 +3,7 @@ import BigButton from '@/app/components/BigButton';
 
 const Hero = () => {
   return (
-    <PageContainer maxWidth={1000}>
+    <PageContainer maxWidth={1000} id="Hero">
       <div className="font-sans flex gap-8 flex-col">
         <div className="text-sm font-mono text-second">Hi, my name is</div>
         <div className="big-heading">Shelton Cui</div>

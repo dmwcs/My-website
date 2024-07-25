@@ -32,6 +32,7 @@ const config: Config = {
         second: '#da69c1',
         milkWhite: '#ccd6f6',
         sandGray: '#8892b0',
+        test: '#A75BDD',
       },
       keyframes: {
         fadeIn: {

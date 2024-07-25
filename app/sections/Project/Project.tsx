@@ -6,21 +6,21 @@ import ProjectCard from '@/app/components/ProjectCard';
 const projects = [
   {
     img: '/img.png',
-    title: 'Project Alpha',
+    title: 'Blog-platform',
     description:
-      'This is a description for Project Alpha. It involves building a scalable web application.',
-    techs: ['React', 'Node.js', 'MongoDB'],
-    github: 'https://github.com/user/project-alpha',
-    website: 'https://project-alpha.com',
+      'A blog platform where users can create and manage posts, share information, and engage with each other.',
+    techs: ['React', 'PostgreSQL', 'Prisma', 'Auth.js', 'Docker'],
+    github: 'https://github.com/dmwcs/My-Blog-Platform',
+    website: 'https://github.com/dmwcs/My-Blog-Platform',
   },
   {
-    img: '/img.png',
-    title: 'Project Beta',
+    img: '/my-website.jpg',
+    title: 'My-website',
     description:
-      'This is a description for Project Beta. It focuses on machine learning and data analysis.',
-    techs: ['Python', 'TensorFlow', 'Pandas'],
-    github: 'https://github.com/user/project-beta',
-    website: 'https://project-gamma.com',
+      'My personal website, built with Tailwind CSS and TypeScript without relying on component libraries, features dynamic animations and engaging layout effects. ',
+    techs: ['TypeScript', 'TailwindCss', 'Next.js', 'CustomHooks'],
+    github: 'https://github.com/dmwcs/My-website',
+    website: 'https://github.com/dmwcs/My-website',
   },
   {
     img: '/img.png',
@@ -35,7 +35,7 @@ const projects = [
 
 const Project = () => {
   return (
-    <div className="mx-auto max-w-[1000px] py-32">
+    <div className="mx-auto max-w-[1000px] py-32" id="Project">
       <CardTitle title="My projects" index={3}></CardTitle>
       <div className="space-y-36">
         {projects.map((project, index) => {

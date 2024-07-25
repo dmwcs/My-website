@@ -46,7 +46,7 @@ const Job = () => {
   }, [selectedTab]);
 
   return (
-    <div className="mx-auto max-w-[900px] py-32 relative" id="Experience">
+    <div className="mx-auto max-w-[900px] py-32 relative" id="Job">
       <CardTitle index={2} title="Where I've Worked" />
       <div className="flex">
         <div className="relative flex flex-col gap-4">
