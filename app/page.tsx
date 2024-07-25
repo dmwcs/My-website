@@ -3,40 +3,18 @@ import Hero from '@/app/sections/Hero';
 import AboutMe from '@/app/sections/AboutMe';
 import Job from '@/app/sections/Job';
 import Project from '@/app/sections/Project';
-import { useEffect, useState } from 'react';
+import Contact from '@/app/sections/Contact';
+import CursorFollow from '@/app/components/CoursorFollow';
 
 export default function Home() {
-  const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    setIsVisible(true);
-  }, []);
-
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      setCursorPosition({ x: e.clientX, y: e.clientY });
-    };
-
-    document.addEventListener('mousemove', handleMouseMove);
-
-    return () => {
-      document.removeEventListener('mousemove', handleMouseMove);
-    };
-  }, []);
-
   return (
     <>
       <Hero />
       <AboutMe />
       <Job />
       <Project />
-      <div
-        className="pointer-events-none fixed inset-0 -z-50"
-        style={{
-          background: `radial-gradient(circle at ${cursorPosition.x}px ${cursorPosition.y}px, rgba(218, 105, 193, 0.15), transparent 30%)`,
-        }}
-      />
+      <Contact />
+      <CursorFollow />
     </>
   );
 }

@@ -1,9 +1,11 @@
-import PageContainer from '@/app/components/PageContainer/PageContainer';
 import BigButton from '@/app/components/BigButton';
 
 const Hero = () => {
   return (
-    <PageContainer maxWidth={1000} id="Hero">
+    <div
+      className="flex flex-col gap-2 min-h-[100vh] justify-center mx-auto max-w-[1000px]"
+      id="Hero"
+    >
       <div className="font-sans flex gap-8 flex-col">
         <div className="text-sm font-mono text-second">Hi, my name is</div>
         <div className="big-heading">Shelton Cui</div>
@@ -20,7 +22,7 @@ const Hero = () => {
           <BigButton>Check my resume!</BigButton>
         </div>
       </div>
-    </PageContainer>
+    </div>
   );
 };
 
