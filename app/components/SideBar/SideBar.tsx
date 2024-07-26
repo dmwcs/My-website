@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 const SideBar = () => {
   return (
-    <div>
+    <div className="hidden md:block">
       <div className="fixed left-14 bottom-0">
         <Link href="https://github.com/dmwcs" className="bg-white">
           <FaGithub

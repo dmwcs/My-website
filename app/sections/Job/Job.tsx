@@ -51,7 +51,7 @@ const Job = () => {
       <div className="flex">
         <div className="relative flex flex-col gap-4">
           <div
-            className="absolute left-0 w-[2px] bg-second transition-all duration-300"
+            className="flex absolute left-0 w-[2px] bg-second transition-all duration-300"
             style={indicatorStyle}
           />
           {tabs.map((tab, index) => (

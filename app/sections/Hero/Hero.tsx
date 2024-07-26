@@ -12,7 +12,7 @@ const Hero = () => {
         <div className="big-heading">Shelton Cui</div>
 
         <div className="big-heading text-sandGray">Welcome to my website.</div>
-        <div className="text-xl whitespace-pre-line text-sandGray">
+        <div className="text-lg whitespace-pre-line text-sandGray">
           I’m a versatile ReactJS/TypeScript developer. Currently, collaborating
           with a professional team, I’m working on building a platform called{' '}
           {<span className="text-second">TripTribe </span>}

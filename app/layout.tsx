@@ -24,7 +24,9 @@ export default function RootLayout({
       <body className={`${inter.className} bg-bg font-sans`}>
         <NavBar />
         <SideBar />
-        <div className="mx-auto max-w-[1600px] px-[150px] ">{children}</div>
+        <div className="mx-auto max-w-[1600px] md:px-[150px] sm:px-[100px] px-[50px]">
+          {children}
+        </div>
       </body>
     </html>
   );
