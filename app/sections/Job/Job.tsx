@@ -48,10 +48,10 @@ const Job = () => {
   return (
     <div className="mx-auto max-w-[900px] py-32 relative" id="Job">
       <CardTitle index={2} title="Where I've Worked" />
-      <div className="flex">
-        <div className="relative flex flex-col gap-4">
+      <div className="flex sm:flex-row flex-col gap-4">
+        <div className="relative sm:flex-col flex">
           <div
-            className="flex absolute left-0 w-[2px] bg-second transition-all duration-300"
+            className="absolute left-0 w-[2px] bg-second transition-all duration-300 md:block hidden"
             style={indicatorStyle}
           />
           {tabs.map((tab, index) => (
@@ -60,14 +60,14 @@ const Job = () => {
               ref={(el) => {
                 tabRefs.current[index] = el as HTMLDivElement;
               }}
-              className={`transition duration-300 hover:bg-second/30 cursor-pointer font-mono text-sm p-4 text-center ${selectedTab === index ? 'text-second' : 'text-gray-400'}`}
+              className={`transition-transform duration-300 hover:bg-second/30 cursor-pointer font-mono text-sm sm:p-4 p-2 text-center ${selectedTab === index ? 'text-second  border-b-2 sm:border-0 border-second' : 'text-gray-400'}`}
               onClick={() => setSelectedTab(index)}
             >
               {tab}
             </div>
           ))}
         </div>
-        <div ref={contentRef} className="pl-8 animate-fadeIn ">
+        <div ref={contentRef} className="animate-fadeIn ">
           <h2 className="text-xl font-bold">
             {experiences[selectedTab].position} @{' '}
             {experiences[selectedTab].company}

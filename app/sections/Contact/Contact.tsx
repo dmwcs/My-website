@@ -17,8 +17,8 @@ const Contact = () => {
       id="Contact"
     >
       <div className="font-mono text-second">04. The next step</div>
-      <div className="text-6xl">Contact with Me</div>
-      <p className="text-xl text-center">
+      <div className="text-4xl sm:text-5xl md:text-6xl">Contact with Me</div>
+      <p className="text-base sm:text-lg md:text-xl text-center">
         I'm currently open to new opportunities. Whether you have a question or
         just want to say hi, my inbox is always open. I'll do my best to get
         back to you as soon as possible!
