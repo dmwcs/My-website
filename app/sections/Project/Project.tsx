@@ -23,13 +23,13 @@ const projects = [
     website: 'https://github.com/dmwcs/My-website',
   },
   {
-    img: '/img.jpg',
-    title: 'Project Gamma',
+    img: '/img2.jpg',
+    title: 'Post-manager',
     description:
-      'This is a description for Project Gamma. It is a mobile application for social networking.',
-    techs: ['Flutter', 'Firebase', 'Dart'],
-    github: 'abc',
-    website: 'https://project-gamma.com',
+      'A system allowing users to manage their posts, with functionalities to add, delete, and edit posts.',
+    techs: ['MongoDB', 'mongoose', 'RESTful API'],
+    github: '/',
+    website: '/',
   },
 ];
 

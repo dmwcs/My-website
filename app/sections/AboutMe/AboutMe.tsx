@@ -26,15 +26,13 @@ const AboutMe = () => {
             <p>
               {`Hello, I’m Shelton Cui, a dedicated JavaScript Engineer with over 3 years of
                development experience and 1 year of professional work experience. I specialize
-                in React development and am skilled in using tools and technologies such as 
+                in React development and am skilled in many technologies such as 
                 Next.js, TypeScript, Tailwind CSS, and Prisma.`}
             </p>
             <p>
-              {`One of my strengths is my ability to quickly learn new technologies and adapt to new 
-              environments. Whether it’s a new tool, framework, or working in a different type of 
-              project, I excel at rapidly acquiring the necessary skills and integrating them into 
-              my work. This adaptability allows me to thrive in dynamic and innovative settings 
-              where challenges are viewed as opportunities for growth.`}
+              {`I excel at learning new technologies and adapting to new environments, thriving 
+              in dynamic settings. My strong problem-solving skills enable me to write clean, 
+              maintainable, and reusable code, turning challenges into growth opportunities.`}
             </p>
             <p>
               {`I am eager to contribute to projects that push the boundaries of technology and 
@@ -55,7 +53,7 @@ const AboutMe = () => {
           <Image
             className="self-start"
             alt="my picture"
-            src="/cat.jpg"
+            src="/me.jpg"
             width={200}
             height={200}
             objectPosition="center"
