@@ -17,7 +17,7 @@ COPY . .
 RUN npm run build
 
 # 暴露应用运行的端口（默认情况下 Next.js 运行在 3000 端口）
-EXPOSE 3000
+EXPOSE 80
 
 # 启动 Next.js 应用
 CMD ["npm", "start"]
