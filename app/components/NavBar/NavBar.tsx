@@ -39,7 +39,7 @@ const NavBar = () => {
       <Link href={`#Hero`} className="transition sm:translate-x-5">
         <Image alt="loge" src="/logo.png" width={45} height={45} />
       </Link>
-      <div className="flex sm:gap-x-5 gap-x-3 justify-between font-mono text-sm items-center">
+      <div className="flex gap-x-5 justify-between font-mono text-sm items-center">
         {taps.map((tap, index) => {
           return (
             <Link
@@ -47,7 +47,9 @@ const NavBar = () => {
               key={index}
               className="hover:text-second transition"
             >
-              <span className="text-second">0{index + 1}. </span>
+              <span className="text-second hidden sm:inline-block ">
+                0{index + 1}.{' '}
+              </span>
               {tap}
             </Link>
           );
