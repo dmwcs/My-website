@@ -2,8 +2,8 @@ services:
   app:
     build: .
     image: my-web-image
-    volumes:
-      - .:/app
+#    volumes:
+#      - .:/app
     ports:
       - "80:80"
     restart: unless-stopped
