@@ -5,6 +5,15 @@ import ProjectCard from '@/app/components/ProjectCard';
 
 const projects = [
   {
+    img: '/meetly.png',
+    title: 'Meetly',
+    description:
+      'A platform for creating and participating in global events. Users can easily publish events, set prices, locations, and times, and manage ticket sales using Stripe’s payment integration.',
+    techs: ['MongoDB', 'Stripe', 'Clerk', 'Next.js', 'TailwindCss'],
+    github: 'https://github.com/dmwcs/Meetly',
+    website: 'https://evently-nine-pi.vercel.app/',
+  },
+  {
     img: '/img.jpg',
     title: 'Blog-platform',
     description:
@@ -21,15 +30,6 @@ const projects = [
     techs: ['TypeScript', 'TailwindCss', 'Next.js', 'CustomHooks'],
     github: 'https://github.com/dmwcs/My-website',
     website: 'https://github.com/dmwcs/My-website',
-  },
-  {
-    img: '/img2.jpg',
-    title: 'Post-manager',
-    description:
-      'A system allowing users to manage their posts, with functionalities to add, delete, and edit posts.',
-    techs: ['MongoDB', 'mongoose', 'RESTful API'],
-    github: '/',
-    website: '/',
   },
 ];
 
