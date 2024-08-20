@@ -8,7 +8,7 @@ const projects = [
     img: '/meetly.png',
     title: 'Meetly',
     description:
-      'A platform for creating and participating in global events. Users can easily publish events, set prices, locations, and times, and manage ticket sales using Stripe’s payment integration.',
+      'An event organization web app for creating and participating in global events. Users can easily publish events, set prices, locations, and times, and manage ticket sales using Stripe’s payment integration.',
     techs: ['MongoDB', 'Stripe', 'Clerk', 'Next.js', 'TailwindCss'],
     github: 'https://github.com/dmwcs/Meetly',
     website: 'https://evently-nine-pi.vercel.app/',
