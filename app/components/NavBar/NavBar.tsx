@@ -57,7 +57,7 @@ const NavBar = () => {
         <Link
           onClick={() => setShowNavbar(!showNavbar)}
           className="sm:block hidden bg-gradient-to-r from-primary to-second text-white py-3 px-5 rounded shadow-2xl hover:-translate-y-[1px] hover:scale-110 transition duration-200"
-          href="/resume.pdf"
+          href="/"
         >
           Resume
         </Link>
