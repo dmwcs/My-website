@@ -8,7 +8,7 @@ const projects = [
     img: '/meetly.png',
     title: 'Meetly',
     description:
-      'An event organization web app for creating and participating in global events. Users can easily publish events, set prices, locations, and times, and manage ticket sales using Stripe’s payment integration.',
+      'An event organization web app for creating and participating in global events. Users can easily publish events, set prices, locations, and times, and manage ticket sales using Stripe\'s payment integration.',
     techs: ['MongoDB', 'Stripe', 'Clerk', 'Next.js', 'TailwindCss'],
     github: 'https://github.com/dmwcs/Meetly',
     website: 'https://evently-nine-pi.vercel.app/',
@@ -35,9 +35,9 @@ const projects = [
 
 const Project = () => {
   return (
-    <div className="mx-auto max-w-[1000px] py-32" id="Project">
+    <div className="mx-auto max-w-[1000px] py-32 px-4" id="Project">
       <CardTitle title="My projects" index={3}></CardTitle>
-      <div className="space-y-36">
+      <div className="space-y-24 sm:space-y-36">
         {projects.map((project, index) => {
           return (
             <ProjectCard

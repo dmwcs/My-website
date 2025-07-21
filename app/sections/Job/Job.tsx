@@ -4,29 +4,45 @@ import useIndicator from '@/app/utils/useIndicator';
 import CardTitle from '@/app/components/CardTitle';
 import { BsFillCaretRightFill } from 'react-icons/bs';
 
-const tabs = ['TripTribe', 'Melfish'];
+const tabs = ['TechScrum', 'AnyStay', 'Melfish'];
 
 const experiences = [
   {
-    company: 'TripTribe',
-    position: 'Full-stack developer',
-    duration: 'Feb 2024 – Present',
+    company: 'TechScrum',
+    position: 'Software Developer',
+    duration: 'Jan 2025 – Present',
     details: [
-      'Designed and implemented frontend pages using Material-UI for interface building and Context API for global state management.',
-      'Developed backend services using Nest.js Pages Router to build RESTful APIs, implementing user authentication, course management, and other features.',
-      'Wrote unit tests and integration tests, achieving high test coverage using Jest and Testing Library to ensure code quality and stability.',
-      'Collaborated with the team, participated in requirements analysis, feature design, and iterative development, delivering high-quality products on time',
+      'Developed responsive and reusable UI components using React, TypeScript, and Tailwind CSS',
+      'Built an intuitive drag-and-drop task board interface with smooth animations using React DnD',
+      'Improved frontend performance by implementing code splitting and lazy loading, reducing initial load time by 30%',
+      'Achieved 20% improvement in API response time by optimizing MongoDB aggregation pipelines for data retrieval',
+      'Enhanced user collaboration experience by implementing real-time board updates with WebSocket technology',
+      'Improved system resilience by solving service blocking issues under high concurrency with RabbitMQ task queuing',
+      'Maintained exceptional code quality with comprehensive TDD testing, achieving 90% test coverage',
+    ],
+  },
+  {
+    company: 'AnyStay',
+    position: 'Software Developer',
+    duration: 'Sep 2024 – Jan 2025',
+    details: [
+      'Enhanced code maintainability through development of shared component library and modular design patterns',
+      'Boosted React application performance using advanced techniques including lazy loading and efficient state management',
+      'Reduced infrastructure overhead with serverless architecture implementation using AWS Lambda and API Gateway',
+      'Decreased manual QA workload by 50% through streamlined GitHub Action and Cypress-based CI/CD pipelines',
+      'Ensured consistent deployment environments across staging and production using Docker with AWS EC2',
     ],
   },
   {
     company: 'Melfish',
-    position: 'Front-end developer',
+    position: 'Front-end Developer',
     duration: 'Oct 2023 – Feb 2024',
     details: [
-      'Developed a Meetup-like website from scratch, enabling users to create and join interest groups and activities. All page designs were coordinated with a professional Figma team without using component libraries.',
-      'Collaborated with the Figma Design team to transform wireframes, prototypes, and high-fidelity mock-ups into functional web pages and components. Used TypeScript to enhance collaboration, maintainability, and bug detection efficiency.',
-      'Utilized Tailwind CSS for responsive design, unifying the theme style with the UI team. Optimized complex form actions using React Hook Form, simplifying form logic and state management.',
-      'Implemented RESTful APIs using Next.js’s API routes feature, simplifying file system-based routing. Configured the project from scratch, including Prettier and ESLint rules, to ensure consistent code formatting and linting.',
+      'Built responsive, accessible SPA interfaces using React, Next.js, and TypeScript',
+      'Implemented consistent data flow across the application with Redux Toolkit for shopping cart state management',
+      'Improved API capabilities by designing and implementing RESTful endpoints with pagination and advanced query handling',
+      'Maintained high engineering standards through active code reviews and adherence to Git branching strategies',
+      'Successfully delivered features on schedule by participating in Agile team processes and Scrum methodology',
     ],
   },
 ];
@@ -37,21 +53,20 @@ const Job = () => {
   const contentRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // 每次 selectedTab 变化时重新触发动画
     if (contentRef.current) {
       contentRef.current.classList.remove('animate-fadeIn');
-      void contentRef.current.offsetWidth; // 触发重排以重新开始动画
+      void contentRef.current.offsetWidth; 
       contentRef.current.classList.add('animate-fadeIn');
     }
   }, [selectedTab]);
 
   return (
-    <div className="mx-auto max-w-[900px] py-32 relative" id="Job">
+    <div className="mx-auto max-w-[900px] py-32 relative px-4" id="Job">
       <CardTitle index={2} title="Where I've Worked" />
       <div className="flex sm:flex-row flex-col gap-4">
         <div className="relative sm:flex-col flex">
           <div
-            className="absolute left-0 w-[2px] bg-second transition-all duration-300 md:block hidden"
+            className="absolute left-0 w-[2px] bg-second transition-all duration-300 lg:block hidden"
             style={indicatorStyle}
           />
           {tabs.map((tab, index) => (
@@ -67,7 +82,7 @@ const Job = () => {
             </div>
           ))}
         </div>
-        <div ref={contentRef} className="animate-fadeIn ">
+        <div ref={contentRef} className="animate-fadeIn text-lg">
           <h2 className="text-xl font-bold">
             {experiences[selectedTab].position} @{' '}
             {experiences[selectedTab].company}
@@ -75,14 +90,14 @@ const Job = () => {
           <p className="text-sm text-gray-500">
             {experiences[selectedTab].duration}
           </p>
-          <ul className="mt-4 space-y-2 ">
+          <ul className="mt-4 space-y-3">
             {experiences[selectedTab].details.map((detail, index) => (
-              <li key={index} className="flex gap-2">
+              <li key={index} className="flex gap-3">
                 <BsFillCaretRightFill
                   size={15}
-                  className="text-second flex-shrink-0 mt-1"
+                  className="text-second flex-shrink-0 mt-1.5"
                 />
-                {detail}
+                <span>{detail}</span>
               </li>
             ))}
           </ul>

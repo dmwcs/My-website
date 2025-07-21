@@ -4,7 +4,7 @@ import Link from 'next/link';
 const Hero = () => {
   return (
     <div
-      className="flex flex-col gap-2 min-h-[100vh] justify-center mx-auto max-w-[1000px]"
+      className="flex flex-col gap-2 min-h-[100vh] justify-center mx-auto max-w-[1000px] px-4"
       id="Hero"
     >
       <div className="font-sans flex gap-8 flex-col">
@@ -13,11 +13,9 @@ const Hero = () => {
 
         <div className="big-heading text-sandGray">Welcome to my website.</div>
         <div className="text-lg whitespace-pre-line text-sandGray">
-          I’m a versatile ReactJS/TypeScript developer. Currently, collaborating
-          with a professional team, I’m working on building a platform called{' '}
-          {<span className="text-second">TripTribe </span>}
-          that recommends attractions and restaurants with a transparent rating
-          system and authentic user reviews.
+          I'm a passionate Full-stack developer with solid skills in React, TypeScript, and modern web technologies. 
+          Currently, I'm working at {<span className="text-second">TechScrum</span>} on building an AI-powered 
+          task management platform that supports natural language interaction for creating and managing tickets.
         </div>
         <div className="self-start pr-10">
           <BigButton>

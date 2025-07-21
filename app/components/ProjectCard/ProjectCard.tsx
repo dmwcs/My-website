@@ -21,8 +21,8 @@ interface Props {
 const ProjectCard = ({ project, direct = 'left' }: Props) => {
   const { img, title, description, techs, github, website } = project;
   return (
-    <div className="relative">
-      <div className={`relative w-8/12 ${direct === 'left' ? '' : 'ml-auto'}`}>
+    <div className="relative px-4">
+      <div className={`relative w-full sm:w-8/12 ${direct === 'left' ? '' : 'sm:ml-auto'}`}>
         <Image
           src={img}
           alt="Project Screenshot"
