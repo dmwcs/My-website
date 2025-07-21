@@ -29,7 +29,7 @@ const config: Config = {
       colors: {
         bg: '#111428',
         primary: '#734cf9',
-        second: '#da69c1',
+        second: '#4ECDC4',
         milkWhite: '#ccd6f6',
         sandGray: '#8892b0',
         test: '#A75BDD',

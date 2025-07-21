@@ -24,7 +24,7 @@ const ProjectContent = ({
       className={`sm:top-1/2 sm:-translate-y-1/2 sm:absolute static mt-4 sm:mt-0 gap-4 z-20 sm:w-6/12 w-full flex flex-col ${direct === 'left' ? 'sm:items-end sm:right-0' : 'sm:items-start sm:left-0'} rounded-lg `}
     >
       <h3 className="shadow-lg text-2xl font-bold text-white">{title}</h3>
-      <p className="p-4 mt-4 bg-test/90 pl-4 rounded text-lg shadow-2xl">
+      <p className="p-4 mt-4 bg-second/70 pl-4 rounded text-lg shadow-2xl text-white">
         {description}
       </p>
       <div className="flex gap-4 flex-wrap">

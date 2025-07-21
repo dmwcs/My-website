@@ -19,7 +19,7 @@ const CursorFollow = () => {
     <div
       className="pointer-events-none fixed inset-0 -z-50"
       style={{
-        background: `radial-gradient(circle at ${cursorPosition.x}px ${cursorPosition.y}px, rgba(218, 105, 193, 0.15), transparent 30%)`,
+        background: `radial-gradient(circle at ${cursorPosition.x}px ${cursorPosition.y}px, rgba(78, 205, 196, 0.15), transparent 30%)`,
       }}
     />
   );

@@ -3,6 +3,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import useIndicator from '@/app/utils/useIndicator';
 import CardTitle from '@/app/components/CardTitle';
 import { BsFillCaretRightFill } from 'react-icons/bs';
+import { FaBriefcase, FaCalendarAlt } from 'react-icons/fa';
 
 const tabs = ['TechScrum', 'AnyStay', 'Melfish'];
 
@@ -55,7 +56,7 @@ const Job = () => {
   useEffect(() => {
     if (contentRef.current) {
       contentRef.current.classList.remove('animate-fadeIn');
-      void contentRef.current.offsetWidth; 
+      void contentRef.current.offsetWidth;
       contentRef.current.classList.add('animate-fadeIn');
     }
   }, [selectedTab]);
@@ -83,21 +84,30 @@ const Job = () => {
           ))}
         </div>
         <div ref={contentRef} className="animate-fadeIn text-lg">
-          <h2 className="text-xl font-bold">
-            {experiences[selectedTab].position} @{' '}
-            {experiences[selectedTab].company}
-          </h2>
-          <p className="text-sm text-gray-500">
-            {experiences[selectedTab].duration}
-          </p>
-          <ul className="mt-4 space-y-3">
+          <div className="mb-4">
+            <div className="flex items-center gap-2">
+              <FaBriefcase className="text-second" size={16} />
+              <h2 className="text-2xl font-bold ">
+                <span className="text-milkWhite">
+                  {experiences[selectedTab].position}
+                </span>
+              </h2>
+            </div>
+            <div className="flex items-center gap-2 mt-2 text-sm text-sandGray">
+              <FaCalendarAlt className="text-second" size={12} />
+              <span>{experiences[selectedTab].duration}</span>
+            </div>
+          </div>
+          <ul className="mt-6 space-y-3">
             {experiences[selectedTab].details.map((detail, index) => (
-              <li key={index} className="flex gap-3">
+              <li key={index} className="flex gap-3 group">
                 <BsFillCaretRightFill
                   size={15}
-                  className="text-second flex-shrink-0 mt-1.5"
+                  className="text-second flex-shrink-0 mt-1.5 group-hover:text-primary transition-colors duration-300"
                 />
-                <span>{detail}</span>
+                <span className="group-hover:text-milkWhite transition-colors duration-300">
+                  {detail}
+                </span>
               </li>
             ))}
           </ul>
