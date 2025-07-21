@@ -1,36 +1,66 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Shelton Cui - Personal Portfolio Website
+
+![Website Screenshot](/public/my-website.jpg)
+
+This is my personal portfolio website built with Next.js and modern web technologies. The site showcases my skills, work experience, and projects in an interactive and visually appealing way.
+
+## Features
+
+- **Responsive Design** - Fully optimized for all screen sizes from mobile to desktop
+- **Interactive UI Elements** - Smooth animations, hover effects, and transitions
+- **Section-Based Layout** - Organized content with dedicated sections for about me, work experience, projects, and contact
+- **Modern Design** - Clean, minimalist design with carefully selected color schemes
+- **Optimized Performance** - Fast loading times and smooth scrolling experience
+
+## Technologies Used
+
+- **Next.js** - React framework with server-side rendering
+- **TypeScript** - Type-safe JavaScript code
+- **Tailwind CSS** - Utility-first CSS framework
+- **React Icons** - Icon components for React
+- **Custom Hooks** - Specialized hooks for features like cursor following and tabs
+- **CSS Animations** - Smooth transitions and hover effects
+
+## Project Structure
+
+- `app/components` - Reusable UI components
+- `app/sections` - Main website sections (Hero, AboutMe, Job, Project, Contact)
+- `app/utils` - Utility functions and custom hooks
+- `public` - Static assets like images
 
 ## Getting Started
 
-First, run the development server:
+1. Clone this repository
+2. Install dependencies:
+   ```bash
+   npm install
+   # or
+   yarn
+   ```
+3. Start the development server:
+   ```bash
+   npm run dev
+   # or
+   yarn dev
+   ```
+4. Open [http://localhost:3000](http://localhost:3000) to view the website
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Deployment
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+This site can be deployed on Vercel or any other platform supporting Next.js applications.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Customization
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+You can easily customize this template by:
 
-## Learn More
+1. Modifying the content in each section component
+2. Updating the color scheme in `tailwind.config.ts`
+3. Adding or removing sections as needed
 
-To learn more about Next.js, take a look at the following resources:
+## License
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Feel free to use this project as a template for your own portfolio website!
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Built with ❤️ by Shelton Cui
