@@ -1,66 +1,20 @@
-# Shelton Cui - Personal Portfolio Website
+# Hi, I'm Shelton
 
-![Website Screenshot](/public/my-website.jpg)
+I'm a full-stack engineer based in Melbourne. I've spent the last four years building web applications on the cloud — across anti-fraud intelligence platforms, collaborative SaaS tooling, and custom e-commerce. I care about performance and about turning complex data into interfaces people actually want to use.
 
-This is my personal portfolio website built with Next.js and modern web technologies. The site showcases my skills, work experience, and projects in an interactive and visually appealing way.
+Lately I've been building multi-agent LLM systems and shipping them to production.
 
-## Features
+Outside of work, I'm into spearfishing and camping. Which probably says something about how I approach problems: I like going deep, staying calm under pressure, and figuring things out in environments that aren't always predictable.
 
-- **Responsive Design** - Fully optimized for all screen sizes from mobile to desktop
-- **Interactive UI Elements** - Smooth animations, hover effects, and transitions
-- **Section-Based Layout** - Organized content with dedicated sections for about me, work experience, projects, and contact
-- **Modern Design** - Clean, minimalist design with carefully selected color schemes
-- **Optimized Performance** - Fast loading times and smooth scrolling experience
+## Where to find me
 
-## Technologies Used
+- **Portfolio** — <https://sheltoncui.com>
+- **LinkedIn** — <https://www.linkedin.com/in/shelton-cui/>
+- **GitHub** — <https://github.com/dmwcs>
+- **Email** — <cui.shelton@gmail.com>
 
-- **Next.js** - React framework with server-side rendering
-- **TypeScript** - Type-safe JavaScript code
-- **Tailwind CSS** - Utility-first CSS framework
-- **React Icons** - Icon components for React
-- **Custom Hooks** - Specialized hooks for features like cursor following and tabs
-- **CSS Animations** - Smooth transitions and hover effects
-
-## Project Structure
-
-- `app/components` - Reusable UI components
-- `app/sections` - Main website sections (Hero, AboutMe, Job, Project, Contact)
-- `app/utils` - Utility functions and custom hooks
-- `public` - Static assets like images
-
-## Getting Started
-
-1. Clone this repository
-2. Install dependencies:
-   ```bash
-   npm install
-   # or
-   yarn
-   ```
-3. Start the development server:
-   ```bash
-   npm run dev
-   # or
-   yarn dev
-   ```
-4. Open [http://localhost:3000](http://localhost:3000) to view the website
-
-## Deployment
-
-This site can be deployed on Vercel or any other platform supporting Next.js applications.
-
-## Customization
-
-You can easily customize this template by:
-
-1. Modifying the content in each section component
-2. Updating the color scheme in `tailwind.config.ts`
-3. Adding or removing sections as needed
-
-## License
-
-Feel free to use this project as a template for your own portfolio website!
+Open to new opportunities — feel free to reach out.
 
 ---
 
-Built with ❤️ by Shelton Cui
+This repo is the source for my personal site. If you're curious how it's built, just browse around.

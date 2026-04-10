@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 /* ======================================================================
-   NIGHT SHIFT — atmosphere layer
+   TERMINAL FORGE — cool charcoal, warm ember, all mono.
 ====================================================================== */
 
 @layer base {
@@ -15,19 +15,20 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
+    tab-size: 4;
   }
 
   body {
-    background-color: theme('colors.ink');
+    background-color: theme('colors.bg');
     color: theme('colors.paper');
-    font-family: theme('fontFamily.serif');
-    font-size: 17px;
-    line-height: 1.68;
-    font-feature-settings: 'kern', 'liga', 'calt';
+    font-family: theme('fontFamily.mono');
+    font-size: 15px;
+    line-height: 1.72;
+    font-feature-settings: 'kern', 'ss01', 'cv02', 'cv11';
     overflow-x: hidden;
   }
 
-  /* Hide native cursor on desktop — the custom plum dot takes over */
+  /* Hide native cursor on desktop — the custom ember dot takes over */
   @media (hover: hover) and (pointer: fine) {
     body {
       cursor: none;
@@ -38,8 +39,8 @@
   }
 
   ::selection {
-    background-color: theme('colors.plum');
-    color: theme('colors.ink');
+    background-color: theme('colors.ember');
+    color: theme('colors.bg');
   }
 
   a {
@@ -49,57 +50,55 @@
 }
 
 /* ======================================================================
-   THE LAMP — a dusty plum radial glow fixed to the top-left,
-   gently breathing. Creates the "lit by a single source" feeling.
+   THE LAMP — extremely subtle ember glow top-left. Terminals don't
+   really have ambient light, so this is restrained on purpose.
 ====================================================================== */
 
 .lamp {
   position: fixed;
   pointer-events: none;
-  left: -25vw;
-  top: -25vw;
-  width: 85vw;
-  height: 85vw;
-  max-width: 1100px;
-  max-height: 1100px;
+  left: -30vw;
+  top: -30vw;
+  width: 90vw;
+  height: 90vw;
+  max-width: 1200px;
+  max-height: 1200px;
   z-index: 1;
   background: radial-gradient(
     circle at 35% 35%,
-    rgba(124, 107, 255, 0.26) 0%,
-    rgba(124, 107, 255, 0.11) 28%,
-    rgba(88, 70, 200, 0.05) 50%,
+    rgba(232, 112, 60, 0.14) 0%,
+    rgba(232, 112, 60, 0.05) 30%,
+    rgba(200, 80, 40, 0.02) 52%,
     transparent 72%
   );
-  filter: blur(50px);
+  filter: blur(60px);
   mix-blend-mode: screen;
-  animation: lamp-breath 7s ease-in-out infinite;
+  animation: lamp-breath 8s ease-in-out infinite;
 }
 
-/* Secondary light source from the bottom-right — cold blue-gray.
-   The dual light sources (warm plum lamp, cold steel counter-light)
-   create a cinematic two-key lighting setup. */
+/* Cool counter-light from the bottom-right for depth */
 .lamp-far {
   position: fixed;
   pointer-events: none;
   right: -30vw;
   bottom: -30vw;
-  width: 70vw;
-  height: 70vw;
-  max-width: 900px;
-  max-height: 900px;
+  width: 75vw;
+  height: 75vw;
+  max-width: 950px;
+  max-height: 950px;
   z-index: 1;
   background: radial-gradient(
     circle,
-    rgba(130, 148, 165, 0.08) 0%,
-    rgba(90, 102, 115, 0.03) 45%,
+    rgba(130, 148, 165, 0.07) 0%,
+    rgba(90, 102, 115, 0.02) 45%,
     transparent 70%
   );
-  filter: blur(60px);
+  filter: blur(70px);
   mix-blend-mode: screen;
 }
 
 /* ======================================================================
-   FILM GRAIN — subtly animating noise across the entire viewport
+   FILM GRAIN — very faint, cool neutral noise
 ====================================================================== */
 
 .grain {
@@ -107,14 +106,14 @@
   pointer-events: none;
   inset: -10%;
   z-index: 2;
-  opacity: 0.15;
+  opacity: 0.10;
   mix-blend-mode: overlay;
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' seed='11'/><feColorMatrix values='0 0 0 0 0.9  0 0 0 0 0.88  0 0 0 0 0.94  0 0 0 0.55 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.95' numOctaves='2' seed='11'/><feColorMatrix values='0 0 0 0 0.85  0 0 0 0 0.88  0 0 0 0 0.95  0 0 0 0.55 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
   animation: grain 10s steps(10) infinite;
 }
 
 /* ======================================================================
-   CUSTOM CURSOR
+   CUSTOM CURSOR — small ember dot, 1:1 follow
 ====================================================================== */
 
 .cursor-dot {
@@ -122,14 +121,12 @@
   pointer-events: none;
   top: 0;
   left: 0;
-  width: 6px;
-  height: 6px;
+  width: 7px;
+  height: 7px;
   border-radius: 9999px;
-  background: theme('colors.plum');
-  box-shadow: 0 0 18px theme('colors.plum'), 0 0 4px theme('colors.plum-bright');
+  background: theme('colors.ember');
+  box-shadow: 0 0 16px theme('colors.ember'), 0 0 4px theme('colors.ember-bright');
   z-index: 9999;
-  /* No transform transition — we want 1:1 tracking, zero latency.
-     Only size/colour animate when entering hover state. */
   transition: width 0.2s ease, height 0.2s ease,
     background-color 0.2s ease, box-shadow 0.2s ease;
   mix-blend-mode: screen;
@@ -137,11 +134,11 @@
 }
 
 .cursor-dot.is-hover {
-  width: 36px;
-  height: 36px;
+  width: 38px;
+  height: 38px;
   background: transparent;
-  border: 1px solid theme('colors.steel-cool');
-  box-shadow: 0 0 24px rgba(184, 192, 200, 0.35);
+  border: 1px solid theme('colors.ember-bright');
+  box-shadow: 0 0 24px rgba(232, 112, 60, 0.35);
 }
 
 @media (hover: none), (pointer: coarse) {
@@ -159,34 +156,37 @@
   height: 2px;
   background: linear-gradient(
     to right,
-    theme('colors.plum'),
-    theme('colors.plum-bright')
+    theme('colors.ember'),
+    theme('colors.ember-bright')
   );
   z-index: 50;
   transform-origin: left center;
   will-change: transform;
-  box-shadow: 0 0 12px theme('colors.plum');
+  box-shadow: 0 0 12px theme('colors.ember');
 }
 
 /* ======================================================================
-   TYPOGRAPHIC UTILITIES
+   TYPOGRAPHIC + COMPONENT UTILITIES
 ====================================================================== */
 
 @layer components {
+
+  /* Small mono metadata label — uppercased, tracked, muted */
   .meta {
     font-family: theme('fontFamily.mono');
-    font-size: 0.72rem;
+    font-size: 0.7rem;
+    font-weight: 500;
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: theme('colors.muted');
+    color: theme('colors.paper-dim');
   }
 
-  /* A plum-underlined link that draws from left to right on hover */
+  /* Ember-underlined link that draws from left to right on hover */
   .link {
     position: relative;
     display: inline-block;
     padding-bottom: 2px;
-    background-image: linear-gradient(theme('colors.plum'), theme('colors.plum'));
+    background-image: linear-gradient(theme('colors.ember'), theme('colors.ember'));
     background-position: 0 100%;
     background-repeat: no-repeat;
     background-size: 0% 1px;
@@ -195,45 +195,907 @@
   }
   .link:hover {
     background-size: 100% 1px;
-    color: theme('colors.plum-bright');
-  }
-  .link-active {
-    background-size: 100% 1px;
+    color: theme('colors.ember-bright');
   }
 
-  /* Oversized kinetic display heading — the hero name */
+  /* --------------------------------------------------------------
+     HERO — typewriter headline, mono bold
+     Capped at 4rem so the longest phrase ("Full-stack engineer")
+     fits on a single line, and white-space: nowrap enforces that —
+     zero layout shift as the typewriter cycles between phrases.
+  -------------------------------------------------------------- */
   .type-hero {
-    font-family: theme('fontFamily.display');
-    font-weight: 400;
-    font-size: clamp(3.5rem, 14vw, 11rem);
-    line-height: 0.88;
-    letter-spacing: -0.045em;
-    font-variation-settings: 'SOFT' 80, 'WONK' 1, 'opsz' 144;
+    font-family: theme('fontFamily.mono');
+    font-weight: 700;
+    font-size: clamp(2rem, 6vw, 4rem);
+    line-height: 1.05;
+    letter-spacing: -0.035em;
+    white-space: nowrap;
+    overflow: hidden;
+    min-height: 1.1em;
   }
 
-  /* Per-letter staggered reveal for the hero name — populated by
-     the markup using inline CSS custom property --i (letter index). */
-  .type-hero .letter {
+  .type-hero-text {
+    display: inline;
+  }
+
+  /* Blinking block cursor — stays blinking through typing + holds */
+  .block-cursor {
     display: inline-block;
-    opacity: 0;
-    transform: translateY(0.6em) rotate(-2deg);
-    animation: fade-in 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-    animation-delay: calc(380ms + var(--i) * 45ms);
+    width: 0.48em;
+    height: 0.88em;
+    margin-left: 0.08em;
+    transform: translateY(0.08em);
+    background: theme('colors.ember');
+    box-shadow: 0 0 10px theme('colors.ember');
+    animation: cursor-blink 1.05s steps(2) infinite;
+    vertical-align: baseline;
   }
 
-  /* A thin plum rule that draws in */
-  .rule-plum {
+  /* Terminal prompt chevron — ember-colored ❯ prefix used anywhere
+     that used to have the coloured signal dot. Quiet, monochrome. */
+  .prompt {
+    display: inline-block;
+    color: theme('colors.ember');
+    font-family: theme('fontFamily.mono');
+    font-weight: 500;
+    margin-right: 0.55rem;
+    transform: translateY(-0.02em);
+  }
+
+  /* A thin ember rule that draws in */
+  .rule-ember {
     display: block;
     height: 1px;
     background: linear-gradient(
       to right,
-      theme('colors.plum'),
-      rgba(255, 181, 71, 0.15)
+      theme('colors.ember'),
+      rgba(232, 112, 60, 0.15)
     );
     transform-origin: left center;
   }
+  /* Legacy alias so any remaining markup still works */
+  .rule-plum { composes: rule-ember; }
 
-  /* The experience entry "gutter bar" that lights up on hover */
+  /* --------------------------------------------------------------
+     ABOUT LAYOUT — portrait + text, 2-column on desktop
+  -------------------------------------------------------------- */
+  .about-layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.75rem;
+    align-items: start;
+  }
+  @media (min-width: 640px) {
+    .about-layout {
+      grid-template-columns: 170px 1fr;
+      gap: 2.5rem;
+    }
+  }
+
+  .about-portrait {
+    width: 170px;
+    max-width: 100%;
+  }
+
+  /* --------------------------------------------------------------
+     PORTRAIT — mugshot / id card, shared frame styles
+  -------------------------------------------------------------- */
+  .hero-portrait-frame {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1 / 1.2;
+    overflow: hidden;
+    border: 1px solid theme('colors.rule');
+    background: theme('colors.bg-elevated');
+    transition: border-color 0.4s ease;
+  }
+  .about-portrait:hover .hero-portrait-frame,
+  .hero-portrait:hover .hero-portrait-frame {
+    border-color: theme('colors.ember');
+  }
+  .hero-portrait-img {
+    object-fit: cover;
+    transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .about-portrait:hover .hero-portrait-img,
+  .hero-portrait:hover .hero-portrait-img {
+    transform: scale(1.04);
+  }
+  .hero-portrait-corner {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 14px;
+    height: 14px;
+    background: theme('colors.ember');
+    clip-path: polygon(100% 0, 0 0, 100% 100%);
+    opacity: 0.85;
+  }
+  .hero-portrait-caption {
+    margin-top: 0.55rem;
+    font-family: theme('fontFamily.mono');
+    font-size: 0.6rem;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: theme('colors.muted');
+    text-align: right;
+    white-space: nowrap;
+  }
+
+  /* --------------------------------------------------------------
+     CONTACT CHIPS — clearly-identifiable link buttons
+  -------------------------------------------------------------- */
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.6rem;
+  }
+  @media (min-width: 640px) {
+    .contact-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  .contact-chip {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.7rem 0.9rem;
+    border: 1px solid theme('colors.rule');
+    background: rgba(22, 26, 34, 0.55);
+    text-decoration: none;
+    color: inherit;
+    overflow: hidden;
+    transition: border-color 0.3s ease, background-color 0.3s ease,
+      transform 0.3s ease;
+  }
+  .contact-chip::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 3px;
+    background: theme('colors.ember');
+    transform: scaleY(0);
+    transform-origin: bottom center;
+    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .contact-chip:hover {
+    border-color: rgba(232, 112, 60, 0.55);
+    background: rgba(232, 112, 60, 0.08);
+    transform: translateY(-2px);
+  }
+  .contact-chip:hover::before {
+    transform: scaleY(1);
+    transform-origin: top center;
+  }
+  .contact-chip-icon {
+    font-family: theme('fontFamily.mono');
+    font-size: 0.85rem;
+    color: theme('colors.ember');
+    width: 1.25rem;
+    text-align: center;
+    flex-shrink: 0;
+  }
+  .contact-chip-body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+    min-width: 0;
+    flex: 1;
+  }
+  .contact-chip-label {
+    font-family: theme('fontFamily.mono');
+    font-size: 0.58rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: theme('colors.ember');
+  }
+  .contact-chip-value {
+    font-family: theme('fontFamily.mono');
+    font-size: 0.82rem;
+    color: theme('colors.paper');
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .contact-chip-arrow {
+    font-family: theme('fontFamily.mono');
+    font-size: 0.95rem;
+    color: theme('colors.paper-dim');
+    flex-shrink: 0;
+    transition: transform 0.3s ease, color 0.3s ease;
+  }
+  .contact-chip:hover .contact-chip-arrow {
+    transform: translate(2px, -2px);
+    color: theme('colors.ember-bright');
+  }
+
+  /* --------------------------------------------------------------
+     COMMENT-STYLE SECTION HEADER — // 01 — about
+  -------------------------------------------------------------- */
+  .section-header {
+    position: relative;
+    margin-bottom: 3rem;
+  }
+  .section-header-comment {
+    font-family: theme('fontFamily.mono');
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    color: theme('colors.ember');
+  }
+  .section-header-title {
+    font-family: theme('fontFamily.mono');
+    font-weight: 700;
+    font-size: clamp(1.85rem, 4vw, 2.8rem);
+    line-height: 1.05;
+    letter-spacing: -0.025em;
+    color: theme('colors.paper');
+    margin-top: 0.55rem;
+  }
+
+  /* --------------------------------------------------------------
+     EXPERIENCE TABS — company switcher (keeps user's markup,
+     just re-themed in ember/mono)
+  -------------------------------------------------------------- */
+  .exp-tab {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.2rem;
+    padding: 0.75rem 1.1rem 0.9rem;
+    margin-bottom: -1px;
+    border: none;
+    background: transparent;
+    color: theme('colors.paper-dim');
+    transition: color 0.3s ease;
+  }
+  .exp-tab:first-child {
+    padding-left: 0;
+  }
+  .exp-tab:hover {
+    color: theme('colors.paper');
+  }
+  .exp-tab.is-active {
+    color: theme('colors.ember-bright');
+  }
+  .exp-tab-label {
+    font-family: theme('fontFamily.mono');
+    font-weight: 700;
+    font-size: 1.05rem;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+  }
+  .exp-tab-period {
+    font-family: theme('fontFamily.mono');
+    font-size: 0.62rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: theme('colors.muted');
+  }
+  .exp-tab::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 2px;
+    background: theme('colors.ember');
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    box-shadow: 0 0 10px rgba(232, 112, 60, 0.55);
+  }
+  .exp-tab.is-active::after {
+    transform: scaleX(1);
+  }
+
+  /* --------------------------------------------------------------
+     README DISPATCH — alternating side-by-side projects.
+     Banner one side, text the other. No card chrome.
+  -------------------------------------------------------------- */
+  .dispatch {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+    align-items: start;
+    color: inherit;
+    position: relative;
+  }
+
+  /* Desktop: banner on left (1.35fr), text on right (1fr) */
+  @media (min-width: 720px) {
+    .dispatch {
+      grid-template-columns: 1.35fr 1fr;
+      gap: 2.2rem;
+    }
+    /* Alternating: banner on right — flip the column ratio so the
+       banner column is STILL 1.35fr. Without this flip, the banner
+       would land in the narrower 1fr column and look smaller. */
+    .dispatch-reverse {
+      grid-template-columns: 1fr 1.35fr;
+    }
+    .dispatch-reverse .dispatch-banner {
+      order: 2;
+    }
+    .dispatch-reverse .dispatch-body {
+      order: 1;
+    }
+  }
+
+  /* Full-width text-only variant for projects without a screenshot */
+  .dispatch-text-only {
+    grid-template-columns: 1fr;
+    gap: 0;
+    padding: 1.5rem 0;
+    border-top: 1px dashed theme('colors.rule');
+    border-bottom: 1px dashed theme('colors.rule');
+  }
+  @media (min-width: 720px) {
+    .dispatch-text-only {
+      grid-template-columns: 1fr;
+    }
+  }
+  .dispatch-text-only .dispatch-body {
+    max-width: 65ch;
+  }
+
+  /* Banner: fixed 16:9 slot. Background is the letterbox colour
+     that fills any space left over when a screenshot's aspect
+     ratio doesn't match 16:9 (object-fit: contain). */
+  .dispatch-banner {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    background:
+      radial-gradient(
+        ellipse at 30% 25%,
+        rgba(232, 112, 60, 0.06),
+        transparent 65%
+      ),
+      theme('colors.bg-elevated');
+    border: 1px solid theme('colors.rule');
+    transition: border-color 0.4s ease, transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .dispatch:hover .dispatch-banner {
+    border-color: rgba(232, 112, 60, 0.5);
+  }
+
+  .dispatch-banner-img {
+    width: 100%;
+    height: 100%;
+    /* contain keeps the whole screenshot visible inside the 16:9
+       frame. Any leftover space is filled by the banner's dark
+       letterbox background. */
+    object-fit: contain;
+    object-position: center;
+    display: block;
+    transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+      filter 0.6s ease;
+    filter: saturate(0.94) contrast(1.02);
+  }
+  .dispatch:hover .dispatch-banner-img {
+    transform: scale(1.02);
+    filter: saturate(1) contrast(1.05);
+  }
+
+  /* Ember tint overlay that fades in on hover */
+  .dispatch-banner::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      180deg,
+      transparent 0%,
+      transparent 55%,
+      rgba(232, 112, 60, 0.14) 100%
+    );
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    pointer-events: none;
+  }
+  .dispatch:hover .dispatch-banner::after {
+    opacity: 1;
+  }
+
+  /* Corner tag on the banner (top-left) — ember label */
+  .dispatch-tag {
+    position: absolute;
+    top: 0.9rem;
+    left: 0.9rem;
+    z-index: 2;
+    padding: 0.3rem 0.6rem;
+    background: rgba(14, 16, 20, 0.75);
+    backdrop-filter: blur(6px);
+    border: 1px solid rgba(232, 112, 60, 0.4);
+    color: theme('colors.ember-bright');
+    font-family: theme('fontFamily.mono');
+    font-size: 0.62rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  /* Body column — all text lives here */
+  .dispatch-body {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+  }
+
+  /* Metadata row — sits at the top of the body */
+  .dispatch-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.45rem 0.9rem;
+    font-family: theme('fontFamily.mono');
+    font-size: 0.66rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: theme('colors.paper-dim');
+  }
+  .dispatch-meta-sep {
+    width: 3px;
+    height: 3px;
+    border-radius: 9999px;
+    background: theme('colors.ember');
+    display: inline-block;
+  }
+
+  .dispatch-title {
+    margin-top: 0.45rem;
+    font-family: theme('fontFamily.mono');
+    font-weight: 700;
+    font-size: clamp(1.45rem, 3vw, 1.9rem);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: theme('colors.paper');
+    transition: color 0.3s ease;
+  }
+  .dispatch-text-only .dispatch-title {
+    font-size: clamp(1.65rem, 3.4vw, 2.15rem);
+  }
+
+  /* Always-visible tagline — one-liner under the title */
+  .dispatch-tagline {
+    margin-top: 0.6rem;
+    font-family: theme('fontFamily.mono');
+    font-size: 0.86rem;
+    line-height: 1.58;
+    color: theme('colors.paper');
+    opacity: 0.86;
+    max-width: 46ch;
+    flex-grow: 1;
+  }
+
+  /* Banner-as-button — the whole banner is clickable to open drawer */
+  .dispatch-banner-button {
+    appearance: none;
+    padding: 0;
+    color: inherit;
+    cursor: pointer;
+  }
+  .dispatch-banner-button:focus-visible {
+    outline: 2px solid theme('colors.ember');
+    outline-offset: 3px;
+  }
+
+  /* Open-details button — bracket-wrapped, very terminal */
+  .dispatch-open {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    margin-top: 1.1rem;
+    padding: 0.55rem 0;
+    border: none;
+    background: transparent;
+    font-family: theme('fontFamily.mono');
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: theme('colors.ember-bright');
+    cursor: pointer;
+    transition: color 0.3s ease, letter-spacing 0.3s ease;
+    align-self: flex-start;
+  }
+  .dispatch-open:hover {
+    color: theme('colors.ember-bright');
+    letter-spacing: 0.22em;
+  }
+  .dispatch-open-bracket {
+    color: theme('colors.ember');
+    font-weight: 700;
+    transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .dispatch-open:hover .dispatch-open-bracket:first-child {
+    transform: translateX(-3px);
+  }
+  .dispatch-open:hover .dispatch-open-bracket:last-child {
+    transform: translateX(3px);
+  }
+  .dispatch-open-arrow {
+    display: inline-block;
+    transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .dispatch-open:hover .dispatch-open-arrow {
+    transform: translate(2px, -2px);
+  }
+  .dispatch-open:focus-visible {
+    outline: 2px solid theme('colors.ember');
+    outline-offset: 4px;
+  }
+
+  /* Card body should push the Open button to the bottom */
+  .dispatch-body {
+    height: 100%;
+  }
+
+  /* Dispatch divider — thin, quiet */
+  .dispatch-sep {
+    display: block;
+    height: 1px;
+    background: theme('colors.rule');
+    margin: 1.4rem 0;
+  }
+
+  /* Hide the fixed clock while a drawer is open so it doesn't
+     collide with the drawer topbar close/ESC actions. */
+  body.is-drawer-open .clock-fixed {
+    opacity: 0;
+    transition: opacity 0.2s ease;
+  }
+
+  /* ==============================================================
+     PROJECT DRAWER — full-bleed detail panel, slides in from right
+  ============================================================== */
+  .drawer-root {
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    pointer-events: none;
+  }
+  .drawer-root.is-open {
+    pointer-events: auto;
+  }
+
+  .drawer-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(8, 10, 14, 0.72);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    border: none;
+    padding: 0;
+    cursor: none;
+    opacity: 0;
+    transition: opacity 0.35s ease;
+  }
+  .drawer-root.is-open .drawer-backdrop {
+    opacity: 1;
+  }
+
+  .drawer-panel {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: min(880px, 94vw);
+    display: flex;
+    flex-direction: column;
+    background: theme('colors.bg');
+    border-left: 1px solid theme('colors.rule');
+    box-shadow: -24px 0 60px -20px rgba(0, 0, 0, 0.6),
+      -1px 0 0 rgba(232, 112, 60, 0.18);
+    transform: translateX(100%);
+    transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: transform;
+  }
+  .drawer-root.is-open .drawer-panel {
+    transform: translateX(0);
+  }
+
+  /* Ember accent bar running down the drawer's left edge */
+  .drawer-panel::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -1px;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(
+      to bottom,
+      theme('colors.ember') 0%,
+      rgba(232, 112, 60, 0.25) 40%,
+      transparent 100%
+    );
+    pointer-events: none;
+  }
+
+  /* Top bar — path + close */
+  .drawer-topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1.1rem 1.4rem;
+    border-bottom: 1px solid theme('colors.rule');
+    background: rgba(22, 26, 34, 0.55);
+    flex-shrink: 0;
+  }
+  .drawer-path {
+    display: inline-flex;
+    align-items: center;
+    font-family: theme('fontFamily.mono');
+    font-size: 0.74rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    color: theme('colors.paper-dim');
+  }
+  .drawer-topbar-actions {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.85rem;
+  }
+  .drawer-kbd {
+    display: inline-block;
+    padding: 0.25rem 0.55rem;
+    border: 1px solid theme('colors.rule');
+    border-bottom-width: 2px;
+    background: theme('colors.bg-elevated');
+    font-family: theme('fontFamily.mono');
+    font-size: 0.62rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    color: theme('colors.paper-dim');
+  }
+  .drawer-close {
+    width: 2.1rem;
+    height: 2.1rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid theme('colors.rule');
+    background: transparent;
+    color: theme('colors.paper-dim');
+    font-family: theme('fontFamily.mono');
+    font-size: 1rem;
+    cursor: pointer;
+    transition: border-color 0.3s ease, color 0.3s ease,
+      background-color 0.3s ease, transform 0.3s ease;
+  }
+  .drawer-close:hover {
+    border-color: theme('colors.ember');
+    color: theme('colors.ember-bright');
+    background: rgba(232, 112, 60, 0.1);
+    transform: rotate(90deg);
+  }
+  .drawer-close:focus-visible {
+    outline: 2px solid theme('colors.ember');
+    outline-offset: 2px;
+  }
+
+  /* Scrollable body */
+  .drawer-body {
+    flex: 1;
+    overflow-y: auto;
+    padding: 2.25rem 2.25rem 3rem;
+    scrollbar-width: thin;
+    scrollbar-color: theme('colors.rule') transparent;
+  }
+  .drawer-body::-webkit-scrollbar {
+    width: 10px;
+  }
+  .drawer-body::-webkit-scrollbar-thumb {
+    background: theme('colors.rule');
+  }
+  @media (min-width: 720px) {
+    .drawer-body {
+      padding: 2.75rem 3rem 3.5rem;
+    }
+  }
+
+  .drawer-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.45rem 0.9rem;
+    font-family: theme('fontFamily.mono');
+    font-size: 0.66rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: theme('colors.ember-bright');
+    margin: 0;
+  }
+
+  .drawer-title {
+    margin-top: 0.75rem;
+    font-family: theme('fontFamily.mono');
+    font-weight: 700;
+    font-size: clamp(2.1rem, 4.5vw, 3rem);
+    line-height: 1.02;
+    letter-spacing: -0.03em;
+    color: theme('colors.paper');
+  }
+
+  .drawer-tagline {
+    margin-top: 0.9rem;
+    max-width: 58ch;
+    font-family: theme('fontFamily.mono');
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: theme('colors.paper');
+    opacity: 0.85;
+  }
+
+  .drawer-banner {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    margin: 2rem 0 0;
+    overflow: hidden;
+    border: 1px solid theme('colors.rule');
+    background:
+      radial-gradient(
+        ellipse at 30% 25%,
+        rgba(232, 112, 60, 0.06),
+        transparent 65%
+      ),
+      theme('colors.bg-elevated');
+  }
+  .drawer-banner-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+    display: block;
+    filter: saturate(0.95) contrast(1.02);
+  }
+
+  .drawer-section {
+    margin-top: 2.25rem;
+  }
+  .drawer-section-label {
+    font-family: theme('fontFamily.mono');
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    color: theme('colors.ember');
+    margin: 0 0 0.85rem;
+  }
+
+  .drawer-prose {
+    font-family: theme('fontFamily.mono');
+    font-size: 0.92rem;
+    line-height: 1.72;
+    color: theme('colors.paper');
+    opacity: 0.92;
+    max-width: 64ch;
+  }
+
+  .drawer-highlights {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+    max-width: 64ch;
+  }
+  .drawer-highlight {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0.85rem;
+    font-family: theme('fontFamily.mono');
+    font-size: 0.9rem;
+    line-height: 1.65;
+    color: theme('colors.paper');
+    opacity: 0.92;
+  }
+  .drawer-bullet {
+    color: theme('colors.ember');
+    font-weight: 500;
+    letter-spacing: -0.05em;
+  }
+
+  .drawer-chips {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .drawer-chip {
+    padding: 0.4rem 0.75rem;
+    border: 1px solid theme('colors.rule');
+    background: rgba(22, 26, 34, 0.5);
+    font-family: theme('fontFamily.mono');
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    color: theme('colors.paper-dim');
+    transition: border-color 0.3s ease, color 0.3s ease,
+      background-color 0.3s ease;
+  }
+  .drawer-chip:hover {
+    border-color: rgba(232, 112, 60, 0.6);
+    color: theme('colors.ember-bright');
+    background: rgba(232, 112, 60, 0.08);
+  }
+
+  /* Big visit CTA at the bottom */
+  .drawer-cta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    width: 100%;
+    margin-top: 2.75rem;
+    padding: 1.1rem 1.4rem;
+    border: 1px solid rgba(232, 112, 60, 0.5);
+    background: rgba(232, 112, 60, 0.04);
+    font-family: theme('fontFamily.mono');
+    color: theme('colors.ember-bright');
+    text-decoration: none;
+    transition: background-color 0.35s ease, border-color 0.35s ease,
+      transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .drawer-cta:hover {
+    background: rgba(232, 112, 60, 0.12);
+    border-color: theme('colors.ember');
+    transform: translateY(-2px);
+  }
+  .drawer-cta-label {
+    font-size: 0.88rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .drawer-cta-arrow {
+    font-size: 1.25rem;
+    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .drawer-cta:hover .drawer-cta-arrow {
+    transform: translate(4px, -4px);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .drawer-panel,
+    .drawer-backdrop,
+    .drawer-close,
+    .drawer-cta,
+    .drawer-cta-arrow,
+    .dispatch-open,
+    .dispatch-open-bracket,
+    .dispatch-open-arrow {
+      transition: none !important;
+    }
+  }
+
+  /* Legacy signal dot — kept for backwards compat but now an ember
+     static dot. Preferred new prefix is .prompt (❯ chevron). */
+  .signal-dot {
+    display: inline-block;
+    width: 0.42rem;
+    height: 0.42rem;
+    border-radius: 9999px;
+    background: theme('colors.ember');
+    box-shadow: 0 0 8px rgba(232, 112, 60, 0.55);
+  }
+
+  /* Gutter bar that lights up on hover — for experience entries */
   .entry {
     position: relative;
     padding-left: 1.25rem;
@@ -250,205 +1112,16 @@
     transition: background 0.3s ease, box-shadow 0.3s ease;
   }
   .entry:hover::before {
-    background: theme('colors.plum');
-    box-shadow: 0 0 12px rgba(255, 181, 71, 0.7);
+    background: theme('colors.ember');
+    box-shadow: 0 0 12px rgba(232, 112, 60, 0.6);
   }
   .entry:hover {
     padding-left: 1.5rem;
   }
-
-  /* Section label that appears above each major block */
-  .section-label {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.6rem;
-  }
-  .section-label::before {
-    content: '';
-    width: 1.5rem;
-    height: 1px;
-    background: theme('colors.plum');
-  }
-
-  /* ------------------------------------------------------------
-     EXPERIENCE TABS — company switcher
-  ------------------------------------------------------------ */
-  .exp-tab {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.15rem;
-    padding: 0.75rem 1.1rem 0.85rem;
-    margin-bottom: -1px;
-    border: none;
-    background: transparent;
-    color: theme('colors.paper-dim');
-    transition: color 0.3s ease;
-  }
-  .exp-tab:first-child {
-    padding-left: 0;
-  }
-  .exp-tab:hover {
-    color: theme('colors.paper');
-  }
-  .exp-tab.is-active {
-    color: theme('colors.plum-bright');
-  }
-  .exp-tab-label {
-    font-family: theme('fontFamily.display');
-    font-style: italic;
-    font-size: 1.15rem;
-    line-height: 1.1;
-  }
-  .exp-tab-period {
-    font-family: theme('fontFamily.mono');
-    font-size: 0.62rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: theme('colors.muted');
-  }
-  .exp-tab::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    height: 2px;
-    background: theme('colors.plum');
-    transform: scaleX(0);
-    transform-origin: left center;
-    transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-    box-shadow: 0 0 10px rgba(155, 122, 175, 0.55);
-  }
-  .exp-tab:first-child::after {
-    left: 0;
-  }
-  .exp-tab.is-active::after {
-    transform: scaleX(1);
-  }
-
-  /* ------------------------------------------------------------
-     PROJECT CARD — thumbnail + clickable wrapper
-  ------------------------------------------------------------ */
-  .project-card {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1.25rem;
-    padding: 1.1rem;
-    border: 1px solid theme('colors.rule');
-    border-radius: 3px;
-    background: rgba(19, 18, 15, 0.35);
-    text-decoration: none;
-    color: inherit;
-    transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
-      border-color 0.35s ease, background-color 0.35s ease,
-      box-shadow 0.35s ease;
-  }
-  @media (min-width: 640px) {
-    .project-card {
-      grid-template-columns: 11rem 1fr;
-      gap: 1.75rem;
-      padding: 1.4rem;
-    }
-  }
-  .project-card:hover {
-    border-color: rgba(155, 122, 175, 0.55);
-    background: rgba(155, 122, 175, 0.04);
-  }
-  .project-card-link:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 20px 44px -24px rgba(155, 122, 175, 0.55);
-  }
-
-  .project-thumb {
-    position: relative;
-    aspect-ratio: 4 / 3;
-    overflow: hidden;
-    border-radius: 2px;
-    border: 1px solid theme('colors.rule');
-    background: linear-gradient(
-      135deg,
-      rgba(155, 122, 175, 0.14),
-      rgba(30, 27, 21, 0.55)
-    );
-  }
-  .project-thumb-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-  }
-  .project-thumb-placeholder {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-image: repeating-linear-gradient(
-      45deg,
-      transparent,
-      transparent 14px,
-      rgba(155, 122, 175, 0.05) 14px,
-      rgba(155, 122, 175, 0.05) 15px
-    );
-  }
-  .project-thumb-placeholder .meta {
-    opacity: 0.55;
-  }
-
-  .project-body {
-    display: flex;
-    flex-direction: column;
-    min-width: 0;
-  }
-
-  .project-cta {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.55rem;
-    margin-top: 1.1rem;
-    align-self: flex-start;
-    padding-bottom: 2px;
-    font-family: theme('fontFamily.mono');
-    font-size: 0.72rem;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: theme('colors.plum-bright');
-    background-image: linear-gradient(
-      theme('colors.plum'),
-      theme('colors.plum')
-    );
-    background-position: 0 100%;
-    background-repeat: no-repeat;
-    background-size: 100% 1px;
-    transition: gap 0.35s cubic-bezier(0.22, 1, 0.36, 1);
-  }
-  .project-card-link:hover .project-cta {
-    gap: 0.95rem;
-  }
-  .project-cta-arrow {
-    display: inline-block;
-    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
-  }
-  .project-card-link:hover .project-cta-arrow {
-    transform: translateX(4px);
-  }
-
-  /* A glowing LIVE signal dot */
-  .signal-dot {
-    display: inline-block;
-    width: 0.5rem;
-    height: 0.5rem;
-    border-radius: 9999px;
-    background: theme('colors.plum');
-    box-shadow: 0 0 10px theme('colors.plum');
-    animation: signal-pulse 1.8s ease-in-out infinite;
-  }
 }
 
 /* ======================================================================
-   REVEAL ON SCROLL (IntersectionObserver toggles .is-visible)
+   REVEAL ON SCROLL
 ====================================================================== */
 
 [data-reveal] {
@@ -462,10 +1135,6 @@
   opacity: 1;
   transform: translateY(0);
 }
-
-/* ======================================================================
-   CONTENT LAYER NEEDS TO SIT ABOVE LAMP + GRAIN
-====================================================================== */
 
 .stage {
   position: relative;

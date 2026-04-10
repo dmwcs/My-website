@@ -1,6 +1,9 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
 import { ExperienceTabs } from './components/ExperienceTabs';
+import { TypewriterHero } from './components/TypewriterHero';
+import { ProjectsSection } from './components/ProjectsSection';
+import type { DispatchProject } from './components/DispatchItem';
 
 export const metadata: Metadata = {
   title: 'Shelton Cui',
@@ -64,45 +67,79 @@ const experiences = [
   },
 ];
 
-const projects: Array<{
-  name: string;
-  year: string;
-  blurb: string;
-  stack: string;
-  image?: string;
-  link?: { label: string; href: string };
-}> = [
+const projects: DispatchProject[] = [
   {
     name: 'CamperDive',
     year: '2025',
+    kind: 'Production · Solo',
+    tagline:
+      'An online store for an Australian spearfishing brand, rebuilt from scratch.',
     blurb:
-      'Complete rebuild of an Australian spearfishing brand — migrated off Shopify onto a custom Next.js stack. Solo build covering architecture, database, payments, SEO and performance. 100/100/100 Lighthouse; content and commerce unified in one CMS for long-tail SEO.',
-    stack: 'Next.js 16 · React 19 · TypeScript · Sanity · Supabase · Drizzle · Stripe · Vercel',
+      'A complete solo rebuild of an Australian spearfishing brand. The existing Shopify store had hit a wall: rigid URLs were holding SEO back, and media-heavy product pages were too slow for a brand where visuals drive conversions. I migrated everything onto a custom Next.js 16 stack and shipped it end-to-end — architecture, database, payments, SEO, performance, and a custom admin dashboard.',
+    highlights: [
+      '100 / 100 / 100 on Lighthouse for Performance, Accessibility, and SEO.',
+      'Commerce and content unified in one Sanity CMS — tutorials and products live together for long-tail SEO.',
+      'Full control over routing, metadata, and JSON-LD structured data (Product, Breadcrumb, HowTo).',
+      'Edge-based geo detection for international shipping.',
+      'Custom admin dashboard for order and inventory management.',
+    ],
+    stack: 'Next.js 16  ·  React 19  ·  TypeScript  ·  Sanity  ·  Supabase  ·  Drizzle  ·  Stripe  ·  Vercel',
     image: '/camperdive.png',
     link: { label: 'camperdive.com', href: 'https://www.camperdive.com/' },
   },
   {
     name: 'Settly AI',
     year: '2025',
+    kind: 'Applied LLM',
+    tagline:
+      'An AI assistant that walks first home buyers through Australian property settlement.',
     blurb:
-      'Hierarchical multi-agent assistant for Australian property settlement. Specialised LLM agents handle conversation, analysis, profile management, and loan calculations under a supervisor graph. Cut LLM costs ~35% through summarisation, prompt caching, and dynamic token budgeting.',
-    stack: 'React · Python · LangGraph · LangChain · OpenAI · MongoDB · PostgreSQL · Redis',
+      'A hierarchical multi-agent system that guides users through Australian property settlement. Specialised LLM agents handle conversation, data analysis, profile management, and loan calculations, coordinated by a supervisor graph. Shipped with streaming responses, session persistence, and aggressive cost optimisation.',
+    highlights: [
+      'Cut LLM API costs by ~35% through conversation summarisation, prompt caching, and dynamic token budgeting.',
+      'Architected the hierarchical multi-agent system on top of LangGraph with specialised worker agents.',
+      'Built a custom stream parser with sub-100ms latency and metadata-driven routing.',
+      'Designed production React hooks for real-time message streaming, thread lifecycle, and user-initiated cancellation.',
+      'Integrated a cloud thread API for session persistence, metadata search, and optimistic UI updates.',
+    ],
+    stack: 'React  ·  Python  ·  LangGraph  ·  LangChain  ·  OpenAI  ·  MongoDB Atlas  ·  PostgreSQL  ·  Redis  ·  Docker  ·  AWS EC2  ·  SSE',
+    image: '/settlyai.png',
+    link: { label: 'settlyai.com', href: 'https://settlyai.com/' },
   },
   {
     name: 'WP Campsite Checker',
     year: '2025',
+    kind: 'Serverless · Solo',
+    tagline:
+      'Watches Wilsons Promontory campsites and emails you the moment a spot opens up.',
     blurb:
-      'Serverless app that watches Wilsons Promontory campsite availability and alerts users the moment a slot opens. Change-detection pipeline diffs availability snapshots and only fires on state transitions. Zero idle cost — runs entirely on AWS free-tier.',
-    stack: 'Vite · React · AWS Lambda · DynamoDB · Cognito · SES · EventBridge',
+      'A serverless app that monitors campsite availability at Wilsons Promontory National Park and notifies users the moment a reservation slot opens up. Popular sites get released in small batches and booked within seconds, so manual checking is impractical. Built solo, end-to-end — frontend, backend, infrastructure, auth, email delivery, and DNS.',
+    highlights: [
+      'Change-detection pipeline that diffs availability snapshots and only fires on state transitions.',
+      'Automated background checks every 15 minutes via EventBridge cron.',
+      'Quick-check view for the next 8 weekends or any custom date range, with per-night tracking.',
+      'Zero idle cost — runs entirely on AWS free-tier and pay-per-invocation services.',
+      'Custom SES email verification on top of Cognito for passwordless onboarding.',
+    ],
+    stack: 'Vite  ·  React  ·  TypeScript  ·  AWS Lambda  ·  API Gateway  ·  DynamoDB  ·  Cognito  ·  SES  ·  EventBridge  ·  CloudFront  ·  Serverless Framework',
     image: '/wpchecker.png',
     link: { label: 'campsite.sheltoncui.com', href: 'https://campsite.sheltoncui.com' },
   },
   {
     name: 'Meetly',
     year: '2022',
+    kind: 'Full-stack · Side',
+    tagline:
+      'A marketplace for anyone to publish events and sell tickets to them.',
     blurb:
-      'Global events platform where users publish events, set prices, and manage ticket sales via Stripe. Clerk auth, Stripe Checkout with webhook fulfilment, server-side search and pagination.',
-    stack: 'Next.js · TypeScript · MongoDB · Clerk · Stripe · Tailwind · shadcn/ui',
+      'A platform for creating and participating in global events. Users publish events, set prices and locations, and manage ticket sales through Stripe. A proper side project built to learn a full payments stack end-to-end.',
+    highlights: [
+      'Clerk authentication with role-aware dashboards for organisers vs. attendees.',
+      'Stripe Checkout with webhook-based order fulfilment.',
+      'Server-side search, category filtering, and pagination.',
+      'Image uploads via UploadThing; form validation with Zod + React Hook Form.',
+    ],
+    stack: 'Next.js 14  ·  TypeScript  ·  MongoDB  ·  Mongoose  ·  Clerk  ·  Stripe  ·  UploadThing  ·  Tailwind  ·  shadcn/ui  ·  Zod  ·  React Hook Form',
     image: '/meetly.png',
     link: { label: 'meetly.sheltoncui.com', href: 'https://meetly.sheltoncui.com/' },
   },
@@ -122,35 +159,17 @@ const skills: [string, string][] = [
 // HELPERS
 // ---------------------------------------------------------------------
 
-/**
- * Wrap each character of a string in a <span.letter> with a staggered
- * CSS custom property --i for per-letter animation timing.
- */
-function KineticTitle({ text, className = '' }: { text: string; className?: string }) {
-  const chars = Array.from(text);
+function SectionHeader({
+  comment,
+  title,
+}: {
+  comment: string;
+  title: string;
+}) {
   return (
-    <h1 className={`type-hero ${className}`} aria-label={text}>
-      {chars.map((ch, i) => (
-        <span
-          key={i}
-          aria-hidden="true"
-          className="letter"
-          style={{ ['--i' as string]: i } as React.CSSProperties}
-        >
-          {ch === ' ' ? '\u00A0' : ch}
-        </span>
-      ))}
-    </h1>
-  );
-}
-
-function SectionLabel({ num, children }: { num: string; children: React.ReactNode }) {
-  return (
-    <div className="mb-12" data-reveal>
-      <span className="meta text-plum tabular-nums">— {num}</span>
-      <h2 className="mt-3 font-display text-4xl italic leading-[0.95] text-paper sm:text-5xl">
-        {children}
-      </h2>
+    <div className="section-header" data-reveal>
+      <p className="section-header-comment">// {comment}</p>
+      <h2 className="section-header-title">{title}</h2>
     </div>
   );
 }
@@ -163,57 +182,63 @@ export default function Home() {
   return (
     <main className="relative mx-auto w-full max-w-reading px-6 py-20 sm:py-28">
       {/* =========================================================
-          HERO — the orchestrated opening
+          HERO — terminal opener
           ========================================================= */}
       <header className="relative">
-        {/* Dateline strip */}
         <div
-          className="flex items-center gap-3 animate-fade-in-slow"
+          className="flex items-center animate-fade-in-slow"
           style={{ animationDelay: '100ms' }}
         >
-          <span className="signal-dot" />
-          <span className="meta text-paper-dim">
-            Night shift · Filed from Melbourne
-          </span>
+          <span className="prompt" aria-hidden="true">❯</span>
+          <span className="meta text-paper-dim">~/shelton/profile.tsx</span>
         </div>
 
-        {/* Kinetic name */}
+        {/* Typewriter name */}
         <div className="mt-10">
-          <KineticTitle text="Shelton Cui" />
+          <TypewriterHero />
         </div>
 
-        {/* Role + summary */}
-        <p
-          className="mt-8 max-w-xl font-display text-xl italic text-paper-dim animate-fade-in"
-          style={{ animationDelay: '1100ms' }}
-        >
-          Full-stack engineer — building for the web, calm under pressure.
-        </p>
+        <div className="rule-ember mt-10 max-w-sm" />
 
-        {/* Amber rule that draws in */}
-        <div
-          className="rule-plum mt-10 max-w-sm animate-draw-line"
-          style={{ animationDelay: '1400ms' }}
-        />
-
-        {/* Contact links */}
-        <ul
-          className="mt-10 flex flex-wrap gap-x-7 gap-y-2 animate-fade-in"
-          style={{ animationDelay: '1500ms' }}
-        >
+        {/* Contact chips */}
+        <ul className="contact-grid mt-8">
           {[
-            { label: 'cui.shelton@gmail.com', href: 'mailto:cui.shelton@gmail.com' },
-            { label: 'LinkedIn', href: 'https://www.linkedin.com/in/shelton-cui/' },
-            { label: 'GitHub', href: 'https://github.com/dmwcs' },
+            {
+              label: 'Email',
+              value: 'cui.shelton@gmail.com',
+              href: 'mailto:cui.shelton@gmail.com',
+              icon: '@',
+            },
+            {
+              label: 'LinkedIn',
+              value: 'in/shelton-cui',
+              href: 'https://www.linkedin.com/in/shelton-cui/',
+              icon: 'in',
+            },
+            {
+              label: 'GitHub',
+              value: 'github.com/dmwcs',
+              href: 'https://github.com/dmwcs',
+              icon: '{ }',
+            },
           ].map((l) => (
-            <li key={l.label} className="meta">
+            <li key={l.label}>
               <a
                 href={l.href}
                 target={l.href.startsWith('http') ? '_blank' : undefined}
                 rel={l.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                className="link text-paper"
+                className="contact-chip"
               >
-                {l.label}
+                <span className="contact-chip-icon" aria-hidden="true">
+                  {l.icon}
+                </span>
+                <span className="contact-chip-body">
+                  <span className="contact-chip-label">{l.label}</span>
+                  <span className="contact-chip-value">{l.value}</span>
+                </span>
+                <span className="contact-chip-arrow" aria-hidden="true">
+                  ↗
+                </span>
               </a>
             </li>
           ))}
@@ -221,113 +246,68 @@ export default function Home() {
       </header>
 
       {/* =========================================================
-          ABOUT
+          ABOUT — portrait + text, 2-column on desktop
           ========================================================= */}
-      <section className="mt-28" data-reveal>
-        <SectionLabel num="01">About</SectionLabel>
-        <p className="font-serif text-[1.08rem] leading-relaxed text-paper/90">
-          Full-stack engineer with 4+ years of experience building web
-          applications on the cloud. Strong frontend focus — especially on
-          performance and turning complex data into clean, usable interfaces.
-          Work has spanned anti-fraud intelligence platforms, collaborative
-          SaaS tooling, and custom e-commerce.
-        </p>
-        <p className="mt-6 font-serif text-[1.08rem] leading-relaxed text-paper/90">
-          Outside of work:{' '}
-          <span className="italic text-plum-bright">spearfishing and camping</span>.
-          Which probably says something about how I approach problems — I like
-          going deep, staying calm under pressure, and figuring things out in
-          environments that aren&apos;t always predictable.
-        </p>
+      <section className="mt-36" data-reveal>
+        <SectionHeader comment="01 — about" title="Who I am" />
+        <div className="about-layout">
+          <figure className="about-portrait">
+            <div className="hero-portrait-frame">
+              <Image
+                src="/me.jpg"
+                alt="Shelton Cui"
+                fill
+                sizes="(min-width: 640px) 170px, 100vw"
+                className="hero-portrait-img"
+                priority
+              />
+              <span className="hero-portrait-corner" aria-hidden="true" />
+            </div>
+            <figcaption className="hero-portrait-caption">fig.01 · self</figcaption>
+          </figure>
+
+          <div>
+            <p className="text-[0.98rem] leading-relaxed text-paper/90">
+              Full-stack engineer with 4+ years of experience building web
+              applications on the cloud. I care about performance and turning
+              complex data into clean, usable interfaces. Work has spanned
+              anti-fraud intelligence platforms, collaborative SaaS tooling,
+              and custom e-commerce.
+            </p>
+            <p className="mt-5 text-[0.98rem] leading-relaxed text-paper/90">
+              Outside of work:{' '}
+              <span className="text-ember-bright">
+                spearfishing and camping
+              </span>
+              . Which probably says something about how I approach problems —
+              I like going deep, staying calm under pressure, and figuring
+              things out in environments that aren&apos;t always predictable.
+            </p>
+          </div>
+        </div>
       </section>
 
       {/* =========================================================
           EXPERIENCE — tabbed
           ========================================================= */}
-      <section className="mt-32" data-reveal>
-        <SectionLabel num="02">Experience</SectionLabel>
+      <section className="mt-36" data-reveal>
+        <SectionHeader comment="02 — experience" title="Where I've worked" />
         <ExperienceTabs experiences={experiences} />
       </section>
 
       {/* =========================================================
-          PROJECTS — card grid, whole card clickable when link exists
+          PROJECTS — side-by-side README dispatches + drawer
           ========================================================= */}
-      <section className="mt-32">
-        <SectionLabel num="03">Projects</SectionLabel>
-        <div className="space-y-8">
-          {projects.map((p, i) => {
-            const inner = (
-              <>
-                <div className="project-thumb" aria-hidden="true">
-                  {p.image ? (
-                    <Image
-                      src={p.image}
-                      alt={`${p.name} screenshot`}
-                      fill
-                      sizes="(min-width: 640px) 11rem, 100vw"
-                      className="project-thumb-img"
-                    />
-                  ) : (
-                    <div className="project-thumb-placeholder">
-                      <span className="meta">Image</span>
-                    </div>
-                  )}
-                </div>
-                <div className="project-body">
-                  <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
-                    <h3 className="font-display text-2xl italic text-plum-bright">
-                      {p.name}
-                    </h3>
-                    <span className="meta tabular-nums text-paper-dim">
-                      {p.year}
-                    </span>
-                  </div>
-                  <p className="mt-3 text-paper/90">{p.blurb}</p>
-                  <p className="meta mt-4">{p.stack}</p>
-                  {p.link && (
-                    <span className="project-cta">
-                      <span>Visit {p.link.label}</span>
-                      <span className="project-cta-arrow" aria-hidden="true">
-                        →
-                      </span>
-                    </span>
-                  )}
-                </div>
-              </>
-            );
-
-            const common = {
-              'data-reveal': true,
-              style: {
-                ['--reveal-delay' as string]: `${i * 80}ms`,
-              } as React.CSSProperties,
-            };
-
-            return p.link ? (
-              <a
-                key={p.name}
-                href={p.link.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="project-card project-card-link"
-                {...common}
-              >
-                {inner}
-              </a>
-            ) : (
-              <article key={p.name} className="project-card" {...common}>
-                {inner}
-              </article>
-            );
-          })}
-        </div>
+      <section className="mt-36">
+        <SectionHeader comment="03 — projects" title="What I've built" />
+        <ProjectsSection projects={projects} />
       </section>
 
       {/* =========================================================
           SKILLS
           ========================================================= */}
-      <section className="mt-32">
-        <SectionLabel num="04">Skills</SectionLabel>
+      <section className="mt-36">
+        <SectionHeader comment="04 — skills" title="The kit" />
         <dl className="space-y-4" data-reveal>
           {skills.map(([label, items]) => (
             <div
@@ -335,7 +315,7 @@ export default function Home() {
               className="grid grid-cols-[6.5rem_1fr] gap-x-5 gap-y-1 border-b border-rule pb-3 sm:grid-cols-[8rem_1fr]"
             >
               <dt className="meta pt-[3px]">{label}</dt>
-              <dd className="text-paper/90">{items}</dd>
+              <dd className="text-[0.94rem] text-paper/90">{items}</dd>
             </div>
           ))}
         </dl>
@@ -344,18 +324,16 @@ export default function Home() {
       {/* =========================================================
           EDUCATION
           ========================================================= */}
-      <section className="mt-32">
-        <SectionLabel num="05">Education</SectionLabel>
+      <section className="mt-36">
+        <SectionHeader comment="05 — credentials" title="Paperwork" />
         <div className="space-y-3" data-reveal>
-          <p className="text-paper/90">
-            <span className="font-display text-xl italic text-paper">
-              University of Adelaide
-            </span>{' '}
+          <p className="text-[0.98rem] text-paper/90">
+            <span className="font-bold text-paper">University of Adelaide</span>{' '}
             — Master of Computing and Innovation, 2022{' '}
             <span className="meta">(GPA 6/7)</span>
           </p>
-          <p className="text-paper/90">
-            <span className="font-display text-xl italic text-paper">
+          <p className="text-[0.98rem] text-paper/90">
+            <span className="font-bold text-paper">
               AWS Certified Solutions Architect — Associate
             </span>
             , 2026
@@ -366,16 +344,16 @@ export default function Home() {
       {/* =========================================================
           FOOTER
           ========================================================= */}
-      <footer className="mt-32 pt-4" data-reveal>
-        <div className="flex items-center gap-3">
-          <span className="signal-dot" />
+      <footer className="mt-36 pt-4" data-reveal>
+        <div className="flex items-center">
+          <span className="prompt" aria-hidden="true">❯</span>
           <span className="meta text-paper-dim">
-            Building next dispatch · Available for new work
+            status: open to work · based in Melbourne
           </span>
         </div>
-        <p className="meta mt-6 text-muted">
-          © 2026 Shelton Cui · Set in Fraunces &amp; Newsreader · Hand-built,
-          no templates
+        <p className="meta mt-6 text-muted normal-case tracking-normal">
+          © 2026 Shelton Cui · Typeset in JetBrains Mono · Hand-built, no
+          templates
         </p>
       </footer>
     </main>

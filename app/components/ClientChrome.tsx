@@ -118,12 +118,12 @@ export function ClientChrome() {
       {/* Custom cursor */}
       <div ref={cursorRef} aria-hidden="true" className="cursor-dot" />
 
-      {/* Live clock */}
+      {/* Live clock — hidden when a drawer is open (body.is-drawer-open) */}
       <div
         aria-hidden="true"
-        className="pointer-events-none fixed right-6 top-6 z-40 hidden items-center gap-2 sm:flex"
+        className="clock-fixed pointer-events-none fixed right-6 top-6 z-40 hidden items-center sm:flex"
       >
-        <span className="signal-dot" />
+        <span className="prompt">❯</span>
         <span className="meta text-paper-dim tabular-nums">
           {time ?? '—— :—— :——'} AEST
         </span>

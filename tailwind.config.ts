@@ -1,43 +1,45 @@
 import type { Config } from 'tailwindcss';
 
 /**
- * INK ROOM — a late-evening study lit by a single reading lamp.
- * Warm charcoal, bone paper, dignified dusty plum. Nothing loud.
+ * TERMINAL FORGE — a dev's personal site typeset like a terminal REPL.
+ * Cool charcoal background, warm ember accent, JetBrains Mono everywhere.
  */
 const config: Config = {
   content: ['./app/**/*.{js,ts,jsx,tsx,mdx}'],
   theme: {
     extend: {
       fontFamily: {
-        display: ['var(--font-fraunces)', 'Georgia', 'serif'],
-        serif: ['var(--font-newsreader)', 'Georgia', 'serif'],
+        // One mono to rule them all. Display/serif aliases keep any
+        // remaining class references working without rewriting.
         mono: ['var(--font-jetbrains)', 'ui-monospace', 'SFMono-Regular', 'monospace'],
+        display: ['var(--font-jetbrains)', 'ui-monospace', 'monospace'],
+        serif: ['var(--font-jetbrains)', 'ui-monospace', 'monospace'],
       },
       colors: {
-        // Atmosphere — warm charcoal body, cold gunmetal skeleton
-        ink: '#13120F',
-        'ink-deep': '#0A0908',
-        paper: '#E6E1D4',
-        'paper-dim': '#A9A296',
-        muted: '#6A665D',
-        // The metal anchor — cold gunmetal for rules, gutters, borders.
-        // Sets up a temperature contrast with the warm backdrop and the
-        // warm plum signal colour. This is what keeps the palette masculine.
-        rule: '#3A434C',
-        steel: '#5A6670',
-        'steel-cool': '#B8C0C8',
-        // Accent — vivid electric violet. High saturation intentionally:
-        // it reads as "synthwave / new-wave poster" against the warm charcoal
-        // body and the cold gunmetal skeleton, not as "SaaS purple gradient".
-        plum: '#7C6BFF',
-        'plum-bright': '#9D8CFF',
+        // Cool charcoal body
+        bg: '#0E1014',
+        'bg-elevated': '#161A22',
+        ink: '#0E1014', // legacy alias
+        'ink-deep': '#080A0E',
+        paper: '#E6E9EF',
+        'paper-dim': '#8B93A1',
+        muted: '#4C5362',
+        rule: '#232833',
+        // Single warm accent — forge ember
+        ember: '#E8703C',
+        'ember-bright': '#FF9563',
+        // Rare success / signal
+        'term-green': '#6EE7B7',
+        // Keep steel for secondary light source
+        steel: '#4C5362',
+        'steel-cool': '#8B93A1',
       },
       maxWidth: {
         reading: '760px',
       },
       keyframes: {
         'fade-in': {
-          from: { opacity: '0', transform: 'translateY(12px)' },
+          from: { opacity: '0', transform: 'translateY(10px)' },
           to: { opacity: '1', transform: 'translateY(0)' },
         },
         'fade-in-slow': {
@@ -53,8 +55,8 @@ const config: Config = {
           '50%, 100%': { opacity: '0' },
         },
         'lamp-breath': {
-          '0%, 100%': { opacity: '0.75', transform: 'scale(1)' },
-          '50%': { opacity: '0.92', transform: 'scale(1.03)' },
+          '0%, 100%': { opacity: '0.7', transform: 'scale(1)' },
+          '50%': { opacity: '0.88', transform: 'scale(1.03)' },
         },
         'signal-pulse': {
           '0%, 100%': { opacity: '0.85' },
@@ -78,7 +80,7 @@ const config: Config = {
         'fade-in-slow': 'fade-in-slow 1.4s ease-out both',
         'draw-line': 'draw-line 1s cubic-bezier(0.22, 1, 0.36, 1) both',
         'cursor-blink': 'cursor-blink 1s steps(2) infinite',
-        'lamp-breath': 'lamp-breath 7s ease-in-out infinite',
+        'lamp-breath': 'lamp-breath 8s ease-in-out infinite',
         'signal-pulse': 'signal-pulse 2.4s ease-in-out infinite',
         grain: 'grain 10s steps(10) infinite',
       },

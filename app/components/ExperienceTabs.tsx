@@ -57,18 +57,18 @@ export function ExperienceTabs({ experiences }: { experiences: Experience[] }) {
         className="mt-8 animate-fade-in"
       >
         <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
-          <h3 className="font-display text-2xl text-paper">
+          <h3 className="text-xl font-bold text-paper">
             {exp.role},{' '}
-            <span className="italic text-plum-bright">{exp.company}</span>
+            <span className="text-ember-bright">{exp.company}</span>
           </h3>
           <span className="meta tabular-nums text-paper-dim">{exp.location}</span>
         </div>
-        <p className="mt-4 text-paper/90">{exp.blurb}</p>
+        <p className="mt-4 text-[0.96rem] text-paper/90">{exp.blurb}</p>
         <ul className="mt-5 space-y-2.5">
           {exp.highlights.map((h, j) => (
             <li
               key={j}
-              className="pl-5 -indent-5 text-paper/85 before:mr-3 before:text-plum before:content-['—']"
+              className="pl-5 -indent-5 text-[0.94rem] text-paper/85 before:mr-3 before:text-ember before:content-['—']"
             >
               {h}
             </li>
