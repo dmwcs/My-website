@@ -2,36 +2,489 @@
 @tailwind components;
 @tailwind utilities;
 
-html {
-  scroll-behavior: smooth;
+/* ======================================================================
+   NIGHT SHIFT — atmosphere layer
+====================================================================== */
+
+@layer base {
+  :root {
+    color-scheme: dark;
+  }
+
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    background-color: theme('colors.ink');
+    color: theme('colors.paper');
+    font-family: theme('fontFamily.serif');
+    font-size: 17px;
+    line-height: 1.68;
+    font-feature-settings: 'kern', 'liga', 'calt';
+    overflow-x: hidden;
+  }
+
+  /* Hide native cursor on desktop — the custom plum dot takes over */
+  @media (hover: hover) and (pointer: fine) {
+    body {
+      cursor: none;
+    }
+    a, button, [data-magnetic] {
+      cursor: none;
+    }
+  }
+
+  ::selection {
+    background-color: theme('colors.plum');
+    color: theme('colors.ink');
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
 }
 
-.big-heading {
-  margin: 0;
-  font-size: clamp(40px, 8vw, 80px);
-  font-weight: 600;
-  line-height: 0.8;
+/* ======================================================================
+   THE LAMP — a dusty plum radial glow fixed to the top-left,
+   gently breathing. Creates the "lit by a single source" feeling.
+====================================================================== */
+
+.lamp {
+  position: fixed;
+  pointer-events: none;
+  left: -25vw;
+  top: -25vw;
+  width: 85vw;
+  height: 85vw;
+  max-width: 1100px;
+  max-height: 1100px;
+  z-index: 1;
+  background: radial-gradient(
+    circle at 35% 35%,
+    rgba(124, 107, 255, 0.26) 0%,
+    rgba(124, 107, 255, 0.11) 28%,
+    rgba(88, 70, 200, 0.05) 50%,
+    transparent 72%
+  );
+  filter: blur(50px);
+  mix-blend-mode: screen;
+  animation: lamp-breath 7s ease-in-out infinite;
 }
 
-.skills-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
+/* Secondary light source from the bottom-right — cold blue-gray.
+   The dual light sources (warm plum lamp, cold steel counter-light)
+   create a cinematic two-key lighting setup. */
+.lamp-far {
+  position: fixed;
+  pointer-events: none;
+  right: -30vw;
+  bottom: -30vw;
+  width: 70vw;
+  height: 70vw;
+  max-width: 900px;
+  max-height: 900px;
+  z-index: 1;
+  background: radial-gradient(
+    circle,
+    rgba(130, 148, 165, 0.08) 0%,
+    rgba(90, 102, 115, 0.03) 45%,
+    transparent 70%
+  );
+  filter: blur(60px);
+  mix-blend-mode: screen;
 }
 
-/*////*/
-body {
-  @apply text-milkWhite;
+/* ======================================================================
+   FILM GRAIN — subtly animating noise across the entire viewport
+====================================================================== */
+
+.grain {
+  position: fixed;
+  pointer-events: none;
+  inset: -10%;
+  z-index: 2;
+  opacity: 0.15;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' seed='11'/><feColorMatrix values='0 0 0 0 0.9  0 0 0 0 0.88  0 0 0 0 0.94  0 0 0 0.55 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  animation: grain 10s steps(10) infinite;
 }
 
-.h2 {
-  @apply text-3xl;
+/* ======================================================================
+   CUSTOM CURSOR
+====================================================================== */
+
+.cursor-dot {
+  position: fixed;
+  pointer-events: none;
+  top: 0;
+  left: 0;
+  width: 6px;
+  height: 6px;
+  border-radius: 9999px;
+  background: theme('colors.plum');
+  box-shadow: 0 0 18px theme('colors.plum'), 0 0 4px theme('colors.plum-bright');
+  z-index: 9999;
+  /* No transform transition — we want 1:1 tracking, zero latency.
+     Only size/colour animate when entering hover state. */
+  transition: width 0.2s ease, height 0.2s ease,
+    background-color 0.2s ease, box-shadow 0.2s ease;
+  mix-blend-mode: screen;
+  will-change: transform;
 }
 
-.p {
-  @apply text-xl;
+.cursor-dot.is-hover {
+  width: 36px;
+  height: 36px;
+  background: transparent;
+  border: 1px solid theme('colors.steel-cool');
+  box-shadow: 0 0 24px rgba(184, 192, 200, 0.35);
 }
 
-.anchor {
-  scroll-margin-top: 25vh; /* 设置偏移量 */
+@media (hover: none), (pointer: coarse) {
+  .cursor-dot { display: none !important; }
+}
+
+/* ======================================================================
+   SCROLL PROGRESS BAR
+====================================================================== */
+
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  background: linear-gradient(
+    to right,
+    theme('colors.plum'),
+    theme('colors.plum-bright')
+  );
+  z-index: 50;
+  transform-origin: left center;
+  will-change: transform;
+  box-shadow: 0 0 12px theme('colors.plum');
+}
+
+/* ======================================================================
+   TYPOGRAPHIC UTILITIES
+====================================================================== */
+
+@layer components {
+  .meta {
+    font-family: theme('fontFamily.mono');
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: theme('colors.muted');
+  }
+
+  /* A plum-underlined link that draws from left to right on hover */
+  .link {
+    position: relative;
+    display: inline-block;
+    padding-bottom: 2px;
+    background-image: linear-gradient(theme('colors.plum'), theme('colors.plum'));
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    background-size: 0% 1px;
+    transition: background-size 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+      color 0.3s ease;
+  }
+  .link:hover {
+    background-size: 100% 1px;
+    color: theme('colors.plum-bright');
+  }
+  .link-active {
+    background-size: 100% 1px;
+  }
+
+  /* Oversized kinetic display heading — the hero name */
+  .type-hero {
+    font-family: theme('fontFamily.display');
+    font-weight: 400;
+    font-size: clamp(3.5rem, 14vw, 11rem);
+    line-height: 0.88;
+    letter-spacing: -0.045em;
+    font-variation-settings: 'SOFT' 80, 'WONK' 1, 'opsz' 144;
+  }
+
+  /* Per-letter staggered reveal for the hero name — populated by
+     the markup using inline CSS custom property --i (letter index). */
+  .type-hero .letter {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(0.6em) rotate(-2deg);
+    animation: fade-in 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    animation-delay: calc(380ms + var(--i) * 45ms);
+  }
+
+  /* A thin plum rule that draws in */
+  .rule-plum {
+    display: block;
+    height: 1px;
+    background: linear-gradient(
+      to right,
+      theme('colors.plum'),
+      rgba(255, 181, 71, 0.15)
+    );
+    transform-origin: left center;
+  }
+
+  /* The experience entry "gutter bar" that lights up on hover */
+  .entry {
+    position: relative;
+    padding-left: 1.25rem;
+    transition: padding-left 0.3s ease;
+  }
+  .entry::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.55em;
+    width: 2px;
+    height: calc(100% - 0.55em);
+    background: theme('colors.rule');
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+  }
+  .entry:hover::before {
+    background: theme('colors.plum');
+    box-shadow: 0 0 12px rgba(255, 181, 71, 0.7);
+  }
+  .entry:hover {
+    padding-left: 1.5rem;
+  }
+
+  /* Section label that appears above each major block */
+  .section-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+  .section-label::before {
+    content: '';
+    width: 1.5rem;
+    height: 1px;
+    background: theme('colors.plum');
+  }
+
+  /* ------------------------------------------------------------
+     EXPERIENCE TABS — company switcher
+  ------------------------------------------------------------ */
+  .exp-tab {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.15rem;
+    padding: 0.75rem 1.1rem 0.85rem;
+    margin-bottom: -1px;
+    border: none;
+    background: transparent;
+    color: theme('colors.paper-dim');
+    transition: color 0.3s ease;
+  }
+  .exp-tab:first-child {
+    padding-left: 0;
+  }
+  .exp-tab:hover {
+    color: theme('colors.paper');
+  }
+  .exp-tab.is-active {
+    color: theme('colors.plum-bright');
+  }
+  .exp-tab-label {
+    font-family: theme('fontFamily.display');
+    font-style: italic;
+    font-size: 1.15rem;
+    line-height: 1.1;
+  }
+  .exp-tab-period {
+    font-family: theme('fontFamily.mono');
+    font-size: 0.62rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: theme('colors.muted');
+  }
+  .exp-tab::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 2px;
+    background: theme('colors.plum');
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    box-shadow: 0 0 10px rgba(155, 122, 175, 0.55);
+  }
+  .exp-tab:first-child::after {
+    left: 0;
+  }
+  .exp-tab.is-active::after {
+    transform: scaleX(1);
+  }
+
+  /* ------------------------------------------------------------
+     PROJECT CARD — thumbnail + clickable wrapper
+  ------------------------------------------------------------ */
+  .project-card {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+    padding: 1.1rem;
+    border: 1px solid theme('colors.rule');
+    border-radius: 3px;
+    background: rgba(19, 18, 15, 0.35);
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+      border-color 0.35s ease, background-color 0.35s ease,
+      box-shadow 0.35s ease;
+  }
+  @media (min-width: 640px) {
+    .project-card {
+      grid-template-columns: 11rem 1fr;
+      gap: 1.75rem;
+      padding: 1.4rem;
+    }
+  }
+  .project-card:hover {
+    border-color: rgba(155, 122, 175, 0.55);
+    background: rgba(155, 122, 175, 0.04);
+  }
+  .project-card-link:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 20px 44px -24px rgba(155, 122, 175, 0.55);
+  }
+
+  .project-thumb {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    border-radius: 2px;
+    border: 1px solid theme('colors.rule');
+    background: linear-gradient(
+      135deg,
+      rgba(155, 122, 175, 0.14),
+      rgba(30, 27, 21, 0.55)
+    );
+  }
+  .project-thumb-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .project-thumb-placeholder {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 14px,
+      rgba(155, 122, 175, 0.05) 14px,
+      rgba(155, 122, 175, 0.05) 15px
+    );
+  }
+  .project-thumb-placeholder .meta {
+    opacity: 0.55;
+  }
+
+  .project-body {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+  }
+
+  .project-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    margin-top: 1.1rem;
+    align-self: flex-start;
+    padding-bottom: 2px;
+    font-family: theme('fontFamily.mono');
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: theme('colors.plum-bright');
+    background-image: linear-gradient(
+      theme('colors.plum'),
+      theme('colors.plum')
+    );
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    background-size: 100% 1px;
+    transition: gap 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .project-card-link:hover .project-cta {
+    gap: 0.95rem;
+  }
+  .project-cta-arrow {
+    display: inline-block;
+    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .project-card-link:hover .project-cta-arrow {
+    transform: translateX(4px);
+  }
+
+  /* A glowing LIVE signal dot */
+  .signal-dot {
+    display: inline-block;
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 9999px;
+    background: theme('colors.plum');
+    box-shadow: 0 0 10px theme('colors.plum');
+    animation: signal-pulse 1.8s ease-in-out infinite;
+  }
+}
+
+/* ======================================================================
+   REVEAL ON SCROLL (IntersectionObserver toggles .is-visible)
+====================================================================== */
+
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+[data-reveal].is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ======================================================================
+   CONTENT LAYER NEEDS TO SIT ABOVE LAMP + GRAIN
+====================================================================== */
+
+.stage {
+  position: relative;
+  z-index: 10;
+}
+
+/* ======================================================================
+   REDUCED MOTION
+====================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  [data-reveal] { opacity: 1; transform: none; }
+  .type-hero .letter { opacity: 1; transform: none; }
+  .lamp, .lamp-far, .grain { animation: none; }
 }
